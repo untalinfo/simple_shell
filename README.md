@@ -4,6 +4,10 @@ Space for include <img>
 
 Holberton School Shell (hsh), is a simple program of the line commands. This simple shell recreates basic and some more complex functionalities to result in our own Shell. This shell si developed in the programming language c.
 
+### Requeriments 📋
+
+Simple Shell was built and tested in Ubuntu 14.04 LTS via Vagrant in VirtualBox and compiled with GCC.
+
 ## How to use it 🔧
 Do you need clone this repository:
 ```
@@ -17,7 +21,7 @@ after compilation you can excecute with this command:
 ```
 	./hsh
 ```
-## Test⚙️
+## Test ⚙️
 Some examples of how to..
 	space for include the test cases
 
