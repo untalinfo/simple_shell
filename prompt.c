@@ -20,7 +20,7 @@ int main(void)
 
 	char *data = NULL;
 	ssize_t rd;
-	int w = 0, i = 0;
+	int w = 0;
 	pid_t hijo;
 	list_t *head;
 	char *_path;
