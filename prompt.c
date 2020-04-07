@@ -17,23 +17,19 @@ void ctrlC(int sig)
  */
 int main(void)
 {
+
+	char *data = NULL;
+  ssize_t rd;
+  int w=0;
 	list_t *head;
 	head = NULL;
-	char *data;
-    ssize_t rd;
 	int i=0;
-	pid_t hijo;
-	int w;
-    struct stat st;
 	char * _path;
 	size_t len = 0;
 	char **token = NULL;
 	_path = getenv("PATH");
-	
-
-	data = NULL;
-		
-char *ex = "exit\n";
+	char *ex = "exit\n";
+	_divisor(_path, &head);
     do
     {
 		write(1,"$ ",2);
@@ -46,43 +42,16 @@ char *ex = "exit\n";
 		
 		if (strcmp(ex, data) == 0)
 			exit(-1);
-			
-		//***********************************************
-		token = com_split(data);
-		_divisor(_path, &head);
-		//print_list(head);
-		//***********************************************
-		
-		i=0;
-		/*
-		while (token [i])
-		{
-			printf("%s\n", token[i]);
-			i++;
-		}
-		*/
-		hijo=fork();
-		
-		i=0;
-		if (hijo == 0)
-		{
 
-			if (stat(token[i], &st) == 0)
-			{
-				
-				if (execve(token[0], token, NULL) == -1)
-				{
-					perror("Error:");
-					return (1);
-				}
-			}
-			else
-			{
-				printf("%s: command not found\n", token[0]);
-			}
-		}
+		token = com_split(data);
+		search_path(token[0], head);
+
+		hijo=fork();
+
+		if (hijo == 0)
+			_fork(token);	
 		else
-		wait(&w);
+			wait(&w);
 	}while (rd != -1);
 	if (rd == -1)
 		return (EXIT_FAILURE);
