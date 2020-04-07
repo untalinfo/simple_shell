@@ -30,4 +30,5 @@ char *_strncat(char *dest, char *src, int n);
 void search_path(char * command,const list_t *h);
 char *_strcpy(char *dest, char *src);
 int _fork(char **token);
+void end_of_file(char *data);
 #endif

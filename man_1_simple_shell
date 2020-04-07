@@ -1,0 +1,17 @@
+H 1 "14 April 2020" "1.0" "simple_shell man page"
+.SH NAME
+.B simple_shell
+- Simple Shell for Holberton School
+.SH SYNOPSIS
+.B ./hsh
+[command] [options]
+.SH DESCRIPTION
+The simple shell (hsh) it's a simple program that contains and executes the basic functions of a shell (bash). Whit this shell you can execute commands like ls for example.
+.br
+Shell is a program that takes commands from the keyboard and gives them to the operating system to perform.
+.br
+.br
+.B Overview
+.br
+This simple shell is a simplification of a command interpreter, similar to
+.B bash. 
