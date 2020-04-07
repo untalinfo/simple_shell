@@ -7,7 +7,7 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <signal.h>
-
+#include <sys/stat.h>
 /**
  * struct list_s - singly linked list
  * @str: string - (malloc'ed string)
