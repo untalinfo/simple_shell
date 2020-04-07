@@ -26,5 +26,8 @@ int _divisor(char *_path, list_t **head);
 char **com_split(char *);
 size_t print_list(const list_t *h);
 int _strlen(const char *s);
-
+char *_strncat(char *dest, char *src, int n);
+void search_path(char * command,const list_t *h);
+char *_strcpy(char *dest, char *src);
+int _fork(char **token);
 #endif
