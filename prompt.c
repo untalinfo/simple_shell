@@ -19,8 +19,9 @@ int main(void)
 {
 
 	char *data = NULL;
-  ssize_t rd;
-  int w=0;
+ 	ssize_t rd;
+  	int w=0;
+	pid_t hijo;
 	list_t *head;
 	head = NULL;
 	int i=0;
@@ -52,6 +53,7 @@ int main(void)
 			_fork(token);	
 		else
 			wait(&w);
+		data = NULL, len = 0;
 	}while (rd != -1);
 	if (rd == -1)
 		return (EXIT_FAILURE);
