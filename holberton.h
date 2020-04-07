@@ -26,5 +26,5 @@ int _divisor(char *_path, list_t **head);
 char **com_split(char *);
 size_t print_list(const list_t *h);
 int _strlen(const char *s);
-
+void end_of_file(char *data);
 #endif

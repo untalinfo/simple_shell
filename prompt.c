@@ -1,18 +1,27 @@
 #include "holberton.h"
+
+/**
+ * ctrlC - function that handles signal and write the prompt
+ * @sig: signal to handler
+ * Return: None
+ */
+void ctrlC(int sig)
+{
+	(void) sig;
+	write(STDOUT_FILENO, "\n$ ", 3);
+}
 /**
  * main - PID
  *
  * Return: Always 0.
  */
-int main(int argc, char **argv, char **env)
+int main(void)
 {
 	list_t *head;
 	head = NULL;
-	char *data = NULL;
+	char *data;
     ssize_t rd;
-    char *p ;
 	int i=0;
-    p= "$ ";
 	pid_t hijo;
 	int w;
     struct stat st;
@@ -21,16 +30,20 @@ int main(int argc, char **argv, char **env)
 	char **token = NULL;
 	_path = getenv("PATH");
 	
-	argc = argc;
-	argv = argv;
-	env = env;
 
+	data = NULL;
 		
 char *ex = "exit\n";
     do
     {
-		write(1,p,2);
+		write(1,"$ ",2);
 		rd = getline(&data, &len, stdin);
+
+		signal(SIGINT, ctrlC);
+
+		if(rd == EOF)
+			end_of_file(data);
+		
 		if (strcmp(ex, data) == 0)
 			exit(-1);
 			
@@ -71,7 +84,9 @@ char *ex = "exit\n";
 		else
 		wait(&w);
 	}while (rd != -1);
-    return (0);
+	if (rd == -1)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 
