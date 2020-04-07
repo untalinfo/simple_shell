@@ -20,7 +20,11 @@ list_t *add_node(list_t **head, const char *str)
 	return (add);
 }
 
-
+/**
+ * print_list - prints all the elements of a list_t list.
+ * @h: the list
+ * Return: # of elements.
+ */
 size_t print_list(const list_t *h)
 {
 	unsigned long n = 0;
