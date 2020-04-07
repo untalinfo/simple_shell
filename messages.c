@@ -2,7 +2,7 @@
 
 /**
  * end_of_file - function that deteted EOF and exit the process
- * data: data of getline
+ * @data: data of getline
  * Return: none
  */
 void end_of_file(char *data)
