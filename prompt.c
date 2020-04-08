@@ -1,16 +1,6 @@
 #include "holberton.h"
 
 /**
- * ctrlC - function that handles signal and write the prompt
- * @sig: signal to handler
- * Return: None
- */
-void ctrlC(int sig)
-{
-	(void) sig;
-	write(STDOUT_FILENO, "\n$ ", 3);
-}
-/**
  * main -  principal function to run the programm
  *
  * Return: Always 0.
@@ -32,7 +22,7 @@ int main(void)
 	_path = getenv("PATH");
 	_divisor(_path, &head);
 	do {
-		write(1, "$ ", 2);
+		print_prompt();
 		rd = getline(&data, &len, stdin);
 		if(*data != '\n')
 		{

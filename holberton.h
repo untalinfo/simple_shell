@@ -33,6 +33,8 @@ void search_path(char **command, const list_t *h);
 char *_strcpy(char *dest, char *src);
 int _fork(char **token, const list_t *head);
 void end_of_file(char *data);
+void print_prompt(void);
+void ctrlC(int sig);
 int _strcmp(char *s1, char *s2);
 void free_tok(char **token);
 void free_list(list_t *head);
