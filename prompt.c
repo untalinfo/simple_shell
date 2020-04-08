@@ -40,17 +40,18 @@ int main(void)
 		if (rd == EOF)
 			end_of_file(data);
 
-		if (strcmp(ex, data) == 0)
+		if (_strcmp(ex, data) == 0)
 			exit(-1);
 
 		token = com_split(data);
-		search_path(token[0], head);
-
 		hijo = fork();
 		if (hijo == 0)
-			_fork(token);
+			_fork(token, head);
 		else
 			wait(&w);
+		//free_list(head);
+		
+		free(data);
 		data = NULL, len = 0;
 	} while (rd != -1);
 	if (rd == -1)

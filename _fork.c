@@ -4,7 +4,7 @@
  * @token: double pointer with the input commands and flags
  * Return: FALTA
  */
-int _fork(char **token)
+int _fork(char **token,const list_t *head)
 {
 
 	int i = 0;
@@ -14,11 +14,11 @@ int _fork(char **token)
 	{
 		if (execve(token[0], token, NULL) == -1)
 		{
-			perror("Error:");
+			perror("Error: ");
 			return (-1);
 		}
 	}
-	else
-		printf("%s: command not found\n", token[0]);
+	else 
+		search_path(token, head);
 	return (1);
 }
