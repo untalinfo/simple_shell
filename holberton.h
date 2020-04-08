@@ -32,4 +32,6 @@ void search_path(char *command, const list_t *h);
 char *_strcpy(char *dest, char *src);
 int _fork(char **token);
 void end_of_file(char *data);
+void print_prompt(void);
+void ctrlC(int sig);
 #endif
