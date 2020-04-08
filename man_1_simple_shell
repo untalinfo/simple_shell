@@ -1,4 +1,4 @@
-H 1 "14 April 2020" "1.0" "simple_shell man page"
+.TH man 1 "14 April 2020" "1.0" "simple_shell man page"
 .SH NAME
 .B simple_shell
 - Simple Shell for Holberton School
@@ -7,11 +7,65 @@ H 1 "14 April 2020" "1.0" "simple_shell man page"
 [command] [options]
 .SH DESCRIPTION
 The simple shell (hsh) it's a simple program that contains and executes the basic functions of a shell (bash). Whit this shell you can execute commands like ls for example.
-.br
+.br 
+
 Shell is a program that takes commands from the keyboard and gives them to the operating system to perform.
-.br
-.br
+
 .B Overview
-.br
+
 This simple shell is a simplification of a command interpreter, similar to
-.B bash. 
+.B bash.
+.TP
+ Command [option]...	ls -la 
+.SH OPTIONS
+Simple Shell
+operates in both
+.I interactive
+and 
+.I non-interactive
+mode. The user may initiate
+.B simple shell
+and begin working or initate
+.B simple shell
+using commands meant to be run by the program.
+.SH ARGUMENTS
+The first argument, argument 0 is understood to be the command to be run by
+.B simple shell
+and arguments following as modifier or options.
+
+.B Return value
+
+The return value of a simple command is its exit status
+
+.B Example
+.PP
+
+$./hsh
+
+$ touch Hello.txt
+
+$ ls 
+
+.RS 3
+firts.txt	
+.TB 
+Hello.txt
+.TB
+second.txt
+.RE
+$ |
+
+.SH RESERVED WORDS
+
+.B exit:
+quits the program, exit the shell.
+
+.SH SEE ALSO
+.I sh(1)
+, 
+.I bash(1)
+
+.SH AUTHORS
+Dairo Facundo Duarte <dairof7@gmail.com>
+.br
+Oscar Eduardo Info <racso1607@gmail.com>
