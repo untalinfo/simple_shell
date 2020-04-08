@@ -34,7 +34,8 @@ int main(void)
 	do {
 		write(1, "$ ", 2);
 		rd = getline(&data, &len, stdin);
-
+		if(*data != '\n')
+		{
 		signal(SIGINT, ctrlC);
 
 		if (rd == EOF)
@@ -53,6 +54,7 @@ int main(void)
 		
 		free(data);
 		data = NULL, len = 0;
+		}
 	} while (rd != -1);
 	if (rd == -1)
 		return (EXIT_FAILURE);

@@ -1,6 +1,6 @@
 # simple_shell - Holberton School
 
-Space for include <img>
+<img src="https://i.ibb.co/M8S4nYh/shell.png" alt="shell" border="0">
 
 Holberton School Shell (hsh), is a simple program of the line commands. This simple shell recreates basic and some more complex functionalities to result in our own Shell. This shell si developed in the programming language c.
 
@@ -22,9 +22,21 @@ after compilation you can excecute with this command:
 	./hsh
 ```
 ## Test ⚙️
-Some examples of how to..
-	space for include the test cases
-
+Some examples of how to used this simple shell:
+```
+vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$ ./hsh
+$
+$ pwd
+/home/vagrant/simple_shell
+$|
+```
+```
+vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$ ./hsh
+$ ls
+AUTHORS   _fork.c   holberton.h   man_1_simple_shell   node.c   selector.c
+README.md   hack    hsh           messages.c           promp.c  strfuncions.c
+$|
+```
 ## Development environment 🛠️
 This project has been tested on Ubuntu 14.06.6 LTS
 
@@ -35,4 +47,4 @@ This project has been tested on Ubuntu 14.06.6 LTS
 * Dairo Facundo Durarte - student at Holberton School
 * Oscar Eduardo Info - student at Holberton School
 
-You can also look at the list of all [authors](agregar el link) who have participated in this project.
+You can also look at the list of all [contributors](https://github.com/untalinfo/simple_shell/graphs/contributors) who have participated in this project.
