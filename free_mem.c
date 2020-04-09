@@ -29,7 +29,6 @@ void free_tok(char **token)
 		free(token[i]);
 		i++;
 	}
-	if (token[i] == NULL)
-		free(token[i]);
+
 	free(token);
 }
