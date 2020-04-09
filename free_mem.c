@@ -20,12 +20,16 @@ temp = head;
 
 void free_tok(char **token)
 {
-	int i;
-	i = 0;
+	unsigned int i = 0;
+	
+	if (token == NULL)
+		return;
 	while (token[i])
 	{
 		free(token[i]);
 		i++;
 	}
+	if (token[i] == NULL)
+		free(token[i]);
 	free(token);
 }

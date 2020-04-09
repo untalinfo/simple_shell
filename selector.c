@@ -9,26 +9,28 @@ void search_path(char **command, const list_t *h)
 {
 char *bin_com = NULL;
 
-bin_com = malloc(sizeof(char));
 struct stat st;
 	while (h != NULL)
 	{
-		bin_com = realloc(bin_com, _strlen(command[0]) + _strlen(h->str) + 1);
+		bin_com = malloc(_strlen(command[0]) + _strlen(h->str) + 1);
 		_strcpy (bin_com,h->str);
 		_strncat(bin_com, "/", 1);
 		_strncat(bin_com, command[0], strlen(command[0]));
 		
 		if (stat(bin_com, &st) == 0)
-		{
+		{	
 			if (execve(bin_com, command, NULL) == -1)
 			{
 			perror("Error: ");
-			//return (-1);
 			}
 		}
+
 		h = h->next;
+		free(bin_com);
+		bin_com = NULL;
 	}
-	free(bin_com);
+	write(1,command[0],_strlen(command[0]));
+	write(1, ": command not found\n", 20);
 }
 
 /**
@@ -72,6 +74,7 @@ char **com_split(char *commands)
 		return (NULL);
 	_strcpy(temp2, commands);
 	tok = strtok(commands, " ");
+	
 	while (tok)
 	{
 		len++;
@@ -85,10 +88,12 @@ char **com_split(char *commands)
 
 	for (i = 0; i < len; i++)
 	{
+		printf("<i=%d>",i);
 		token[i] = malloc(sizeof(char *) * _strlen(temp)+1);
 		if (token[i] == NULL)
 		{
 			/*FREE TOKEN*/
+			printf("aca");
 			free_tok(token);
 			return (NULL);
 		}
