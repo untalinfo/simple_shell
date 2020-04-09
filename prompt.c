@@ -16,12 +16,17 @@ int main(void)
 	char *_path;
 	size_t len = 0;
 	char **token = NULL;
-	char *ex = "exit\n";
+	char *ex = "exit";
 
 	head = NULL;
 	_path = getenv("PATH");
 	_divisor(_path, &head);
+	
 	do {
+	
+		
+	
+
 		print_prompt();
 		rd = getline(&data, &len, stdin);
 		if(*data != '\n')
@@ -31,17 +36,24 @@ int main(void)
 		if (rd == EOF)
 			end_of_file(data);
 
-		if (_strcmp(ex, data) == 0)
-			exit(-1);
-
 		token = com_split(data);
+
+		if (_strcmp(ex, token[0]) == 0)
+			{
+				//free(_path);
+				free(data);
+				free_list(head);
+				exit(-1);
+			}
+
+		
 		hijo = fork();
 		if (hijo == 0)
 			_fork(token, head);
 		else
 			wait(&w);
-		//free_list(head);
-		
+	
+		free_tok(token);
 		free(data);
 		data = NULL, len = 0;
 		}

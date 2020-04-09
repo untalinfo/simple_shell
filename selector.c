@@ -77,7 +77,8 @@ char **com_split(char *commands)
 		len++;
 		tok = strtok(NULL, " ");
 	}
-	token = malloc(sizeof(char *) * len + 2);
+
+	token = malloc(sizeof(char *) * len + 1);
 	temp = strtok(temp2, " \n");
 
 	for (i = 0; i < len; i++)
@@ -86,10 +87,7 @@ char **com_split(char *commands)
 		_strcpy(token[i], temp);
 		temp = strtok(NULL, " \n");
 	}
-
-
 	free(temp2);
-	free(temp);
 	return (token);
 }
 
