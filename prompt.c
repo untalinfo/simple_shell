@@ -21,7 +21,12 @@ int main(void)
 	head = NULL;
 	_path = getenv("PATH");
 	_divisor(_path, &head);
+	
 	do {
+	
+		
+	
+
 		print_prompt();
 		rd = getline(&data, &len, stdin);
 		if(*data != '\n')
@@ -31,22 +36,29 @@ int main(void)
 			if (rd == EOF)
 				end_of_file(data);
 
-			token = com_split(data);
 
-			if (_strcmp(ex, token[0]) == 0)
+		token = com_split(data);
+
+		if (_strcmp(ex, token[0]) == 0)
+			{
+				//free(_path);
+				free(data);
+				free_list(head);
 				exit(-1);
+			}
 
-			hijo = fork();
-			if (hijo < 0)
-				_fork_fail();
-			if (hijo == 0)
-				_fork(token, head);
-			else
-				wait(&w);
-			//free_list(head);
-			
-			free(data);
-			data = NULL, len = 0;
+		
+		hijo = fork();
+    if (hijo < 0)
+				_fork_fail();  
+		if (hijo == 0)
+			_fork(token, head);
+		else
+			wait(&w);
+	
+		free_tok(token);
+		free(data);
+		data = NULL, len = 0;
 		}
 	} while (rd != -1);
 	if (rd == -1)

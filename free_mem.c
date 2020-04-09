@@ -3,19 +3,21 @@
 
 void free_list(list_t *head)
 {
-
 list_t *temp, *buff;
 
-	temp = head;
+temp = head;
+
 	while (temp != NULL)
 	{
 		buff = temp->next;
 		free(temp->str);
 		free(temp);
 		temp = buff;
-
 	}
+	head = NULL;
 }
+
+
 void free_tok(char **token)
 {
 	int i;
