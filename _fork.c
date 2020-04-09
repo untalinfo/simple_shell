@@ -22,3 +22,12 @@ int _fork(char **token,const list_t *head)
 		search_path(token, head);
 	return (1);
 }
+/**
+ * _fork_fail - function that print the erro when fork fail
+ * Return: None
+ */
+void _fork_fail(void)
+{
+	perror("Error: ");
+	exit(EXIT_FAILURE);
+}

@@ -77,12 +77,20 @@ char **com_split(char *commands)
 		len++;
 		tok = strtok(NULL, " ");
 	}
-	token = malloc(sizeof(char *) * len + 2);
+	token = malloc(sizeof(char *) * len + 1);
+	if (token == NULL)
+		return (NULL);
 	temp = strtok(temp2, " \n");
 
 	for (i = 0; i < len; i++)
 	{
 		token[i] = malloc(sizeof(char *) * _strlen(temp)+1);
+		if (token[i] == NULL)
+		{
+			/*FREE TOKEN*/
+			free_tok(token);
+			return (NULL);
+		}
 		_strcpy(token[i], temp);
 		temp = strtok(NULL, " \n");
 	}

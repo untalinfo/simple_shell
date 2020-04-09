@@ -37,5 +37,6 @@ void print_prompt(void);
 void ctrlC(int sig);
 int _strcmp(char *s1, char *s2);
 void free_tok(char **token);
+void _fork_fail(void);
 void free_list(list_t *head);
 #endif
