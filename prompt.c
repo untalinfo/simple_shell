@@ -37,28 +37,29 @@ int main(void)
 				end_of_file(data);
 
 
-		token = com_split(data);
+			token = com_split(data);
 
-		if (_strcmp(ex, token[0]) == 0)
+			if (_strcmp("exit", token[0]) == 0)
 			{
 				//free(_path);
 				free(data);
 				free_list(head);
+				free_tok(token);
 				exit(-1);
 			}
 
 		
-		hijo = fork();
-    if (hijo < 0)
+			hijo = fork();
+			if (hijo < 0)
 				_fork_fail();  
-		if (hijo == 0)
-			_fork(token, head);
-		else
-			wait(&w);
-	
-		free_tok(token);
-		free(data);
-		data = NULL, len = 0;
+			if (hijo == 0)
+				_fork(token, head);
+			else
+				wait(&w);
+		
+			free_tok(token);
+			free(data);
+			data = NULL, len = 0;
 		}
 	} while (rd != -1);
 	if (rd == -1)
