@@ -31,10 +31,11 @@ int main(void)
 		rd = getline(&data, &len, stdin);
 		if(*data != '\n')
 		{
-		signal(SIGINT, ctrlC);
+			signal(SIGINT, ctrlC);
 
-		if (rd == EOF)
-			end_of_file(data);
+			if (rd == EOF)
+				end_of_file(data);
+
 
 		token = com_split(data);
 
@@ -48,6 +49,8 @@ int main(void)
 
 		
 		hijo = fork();
+    if (hijo < 0)
+				_fork_fail();  
 		if (hijo == 0)
 			_fork(token, head);
 		else
