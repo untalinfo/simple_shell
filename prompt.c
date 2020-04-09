@@ -23,10 +23,6 @@ int main(void)
 	_divisor(_path, &head);
 	
 	do {
-	
-		
-	
-
 		print_prompt();
 		rd = getline(&data, &len, stdin);
 		if(*data != '\n')
@@ -48,18 +44,20 @@ int main(void)
 				exit(-1);
 			}
 
-		
-			hijo = fork();
-			if (hijo < 0)
+		hijo = fork();
+   	if (hijo < 0)
 				_fork_fail();  
-			if (hijo == 0)
-				_fork(token, head);
-			else
-				wait(&w);
-		
-			free_tok(token);
-			free(data);
-			data = NULL, len = 0;
+		if (hijo == 0)
+		{	
+			_fork(token, head);
+			exit(-1);
+		}	
+		else
+			wait(&w);
+	
+		free_tok(token);
+		free(data);
+		data = NULL, len = 0;
 		}
 	} while (rd != -1);
 	if (rd == -1)
