@@ -16,8 +16,7 @@ int main(void)
 	char *_path;
 	size_t len = 0;
 	char **token = NULL;
-	char *ex = "exit";
-
+	
 	head = NULL;
 	_path = getenv("PATH");
 	_divisor(_path, &head);
@@ -35,32 +34,30 @@ int main(void)
 
 			token = com_split(data);
 
-			if (_strcmp(ex, token[0]) == 0)
-				{
-					//free(_path);
-					free(data);
-					free_list(head);
-					free_tok(token);
-					exit(-1);
-				}
-
-			
-			hijo = fork();
-
-
-			if (hijo < 0)
-					_fork_fail();  
-			if (hijo == 0)
-			{	
-				_fork(token, head);
+			if (_strcmp("exit", token[0]) == 0)
+			{
+				//free(_path);
+				free(data);
+				free_list(head);
+				free_tok(token);
 				exit(-1);
-			}	
-			else
-				wait(&w);
-		
-			free_tok(token);
-			free(data);
-			data = NULL, len = 0;
+			}
+
+		hijo = fork();
+   	if (hijo < 0)
+				_fork_fail();  
+		if (hijo == 0)
+		{	
+			_fork(token, head);
+			exit(-1);
+		}	
+		else
+			wait(&w);
+	
+		free_tok(token);
+		free(data);
+		data = NULL, len = 0;
+
 		}
 	} while (rd != -1);
 	if (rd == -1)
