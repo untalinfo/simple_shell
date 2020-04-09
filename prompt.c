@@ -16,8 +16,7 @@ int main(void)
 	char *_path;
 	size_t len = 0;
 	char **token = NULL;
-	char *ex = "exit";
-
+	
 	head = NULL;
 	_path = getenv("PATH");
 	_divisor(_path, &head);
@@ -58,6 +57,7 @@ int main(void)
 		free_tok(token);
 		free(data);
 		data = NULL, len = 0;
+
 		}
 	} while (rd != -1);
 	if (rd == -1)

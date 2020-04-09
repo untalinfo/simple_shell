@@ -69,7 +69,7 @@ char **com_split(char *commands)
 	char *temp2;
 	int i = 0;
 
-	temp2 = malloc(sizeof(char) * _strlen(commands)+1); //+1
+	temp2 = malloc(sizeof(char) * _strlen(commands)+1); 
 	if (temp2 == NULL)
 		return (NULL);
 	_strcpy(temp2, commands);
@@ -81,25 +81,31 @@ char **com_split(char *commands)
 		tok = strtok(NULL, " ");
 	}
 
-	token = malloc(sizeof(char *) * len + 1);
+	
+	token = malloc(sizeof(char *) * (len + 1));
+
 	if (token == NULL)
 		return (NULL);
 	temp = strtok(temp2, " \n");
+	i=0;
 
-	for (i = 0; i < len; i++)
+	while (temp != NULL)
 	{
-		printf("<i=%d>",i);
-		token[i] = malloc(sizeof(char *) * _strlen(temp)+1);
+
+		token[i] = _strdup(temp);
 		if (token[i] == NULL)
 		{
 			/*FREE TOKEN*/
-			printf("aca");
+		
 			free_tok(token);
 			return (NULL);
 		}
 		_strcpy(token[i], temp);
 		temp = strtok(NULL, " \n");
+		i++;
 	}
+
+	token[i] = NULL;
 	free(temp2);
 	return (token);
 }

@@ -1,6 +1,7 @@
 #ifndef HOLBERTON
 #define HOLBERTON
 #define _GNU_SOURCE
+#define MAX_ARG 10
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -39,4 +40,5 @@ int _strcmp(char *s1, char *s2);
 void free_tok(char **token);
 void _fork_fail(void);
 void free_list(list_t *head);
+char *_strdup(char *str);
 #endif
