@@ -2,13 +2,13 @@
 
 /**
  * print_prompt - function that prints the prompt
- * 
+ *
  * Return: None
  */
 void print_prompt(void)
 {
-        if (isatty(STDIN_FILENO))
-        	write(STDOUT_FILENO, "$ ", 2);
+	if (isatty(STDIN_FILENO))
+		write(STDOUT_FILENO, "$ ", 2);
 }
 /**
  * ctrlC - function that handles signal and write the prompt
@@ -17,9 +17,8 @@ void print_prompt(void)
  */
 void ctrlC(int sig)
 {
-        (void) sig;
-        write(STDOUT_FILENO, "\n$ ", 3);
-		
+	(void) sig;
+	write(STDOUT_FILENO, "\n$ ", 3);
 }
 /**
  * end_of_file - function that deteted EOF and exit the process

@@ -2,9 +2,10 @@
 /**
  * _fork - after fork, this function call the function
  * @token: double pointer with the input commands and flags
- * Return: FALTA
+ * @head: pointer to head of linkend list
+ * Return: return 1 if fork is success
  */
-int _fork(char **token,const list_t *head)
+int _fork(char **token, const list_t *head)
 {
 
 	int i = 0;
@@ -18,7 +19,7 @@ int _fork(char **token,const list_t *head)
 			return (-1);
 		}
 	}
-	else 
+	else
 		search_path(token, head);
 	return (1);
 }
