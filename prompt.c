@@ -16,12 +16,10 @@ int main(void)
 	char *_path;
 	size_t len = 0;
 	char **token = NULL;
-	char *prueba;
 	head = NULL;
-	_path = getenv("PATH");
+	_path = _getenv("PATH");
 	_divisor(_path, &head);
-	prueba = get_env();
-	prueba = prueba;
+	//print_list(head);	
 	do {
 		print_prompt();
 		signal(SIGINT, ctrlC);
@@ -38,7 +36,7 @@ int main(void)
 
 			if (_strcmp("exit", token[0]) == 0)
 			{
-				//free(_path);
+				free(_path);
 				free(data);
 				free_list(head);
 				free_tok(token);

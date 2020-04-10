@@ -10,7 +10,7 @@
 #include <signal.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
-
+extern char **environ;
 /**
  * struct list_s - singly linked list
  * @str: string - (malloc'ed string)
@@ -23,7 +23,7 @@ typedef struct list_s
 	char *str;
 	struct list_s *next;
 } list_t;
-char *get_env(void);
+char *_getenv(char *);
 list_t *add_node(list_t **head, const char *str);
 int _divisor(char *_path, list_t **head);
 char **com_split(char *);
@@ -41,4 +41,5 @@ void free_tok(char **token);
 void _fork_fail(void);
 void free_list(list_t *head);
 char *_strdup(char *str);
+char *_strchr(char *s, char c);
 #endif

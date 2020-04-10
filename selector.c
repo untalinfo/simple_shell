@@ -43,7 +43,6 @@ struct stat st;
 int _divisor(char *_path, list_t **head)
 {
 	char *str;
-
 	str = strtok(_path, ":");
 		while (str != NULL)
 		{
