@@ -4,21 +4,20 @@
  * @command: command input
  * @h: head of the path linked list
  */
-
 void search_path(char **command, const list_t *h)
 {
-char *bin_com = NULL;
+	char *bin_com = NULL;
+	struct stat st;
 
-struct stat st;
 	while (h != NULL)
 	{
 		bin_com = malloc(_strlen(command[0]) + _strlen(h->str) + 1);
-		_strcpy (bin_com,h->str);
+		_strcpy(bin_com, h->str);
 		_strncat(bin_com, "/", 1);
 		_strncat(bin_com, command[0], strlen(command[0]));
-		
+
 		if (stat(bin_com, &st) == 0)
-		{	
+		{
 			if (execve(bin_com, command, NULL) == -1)
 			{
 			perror("Error: ");
@@ -29,7 +28,7 @@ struct stat st;
 		free(bin_com);
 		bin_com = NULL;
 	}
-	write(1,command[0],_strlen(command[0]));
+	write(1, command[0], _strlen(command[0]));
 	write(1, ": command not found\n", 20);
 }
 
@@ -43,6 +42,7 @@ struct stat st;
 int _divisor(char *_path, list_t **head)
 {
 	char *str;
+
 	str = strtok(_path, ":");
 		while (str != NULL)
 		{
@@ -68,34 +68,29 @@ char **com_split(char *commands)
 	char *temp2;
 	int i = 0;
 
-	temp2 = malloc(sizeof(char) * _strlen(commands)+1); 
+	temp2 = malloc(sizeof(char) * _strlen(commands) + 1);
 	if (temp2 == NULL)
 		return (NULL);
 	_strcpy(temp2, commands);
 	tok = strtok(commands, " ");
-	
+
 	while (tok)
 	{
 		len++;
 		tok = strtok(NULL, " ");
 	}
 
-	
 	token = malloc(sizeof(char *) * (len + 1));
 
 	if (token == NULL)
 		return (NULL);
 	temp = strtok(temp2, " \n");
-	i=0;
-
+	i = 0;
 	while (temp != NULL)
 	{
-
 		token[i] = _strdup(temp);
 		if (token[i] == NULL)
-		{
-			/*FREE TOKEN*/
-		
+		{	/*FREE TOKEN*/
 			free_tok(token);
 			return (NULL);
 		}
@@ -103,7 +98,6 @@ char **com_split(char *commands)
 		temp = strtok(NULL, " \n");
 		i++;
 	}
-
 	token[i] = NULL;
 	free(temp2);
 	return (token);

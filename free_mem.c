@@ -1,11 +1,14 @@
-
 #include "holberton.h"
-
+/**
+ * free_list - function that free the linkend list
+ * @head: pointer to head of linkend list
+ * Return: none
+ */
 void free_list(list_t *head)
 {
-list_t *temp, *buff;
+	list_t *temp, *buff;
 
-temp = head;
+	temp = head;
 
 	while (temp != NULL)
 	{
@@ -16,12 +19,15 @@ temp = head;
 	}
 	head = NULL;
 }
-
-
+/**
+ * free_tok - function free the token
+ * @token: double pointer to elements that were stored in the token
+ * Return: none
+ */
 void free_tok(char **token)
 {
 	unsigned int i = 0;
-	
+
 	if (token == NULL)
 		return;
 	while (token[i])
@@ -31,4 +37,19 @@ void free_tok(char **token)
 	}
 
 	free(token);
+}
+/**
+ * free_exit - funtion send to free whent token is equals to exit
+ * @_path: pointer to
+ * @data: Pointer to
+ * @head: pointer to head of linkend list
+ * @token: double pointer to elements that were stored in the token
+ * Return: none
+ */
+void free_exit(char *_path, char *data, list_t *head, char **token)
+{
+	free(_path);
+	free(data);
+	free_list(head);
+	free_tok(token);
 }
