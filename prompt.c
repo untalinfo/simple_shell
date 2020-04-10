@@ -16,17 +16,19 @@ int main(void)
 	char *_path;
 	size_t len = 0;
 	char **token = NULL;
-	
+	char *prueba;
 	head = NULL;
 	_path = getenv("PATH");
 	_divisor(_path, &head);
-	
+	prueba = get_env();
+	prueba = prueba;
 	do {
 		print_prompt();
+		signal(SIGINT, ctrlC);
 		rd = getline(&data, &len, stdin);
 		if(*data != '\n')
 		{
-			signal(SIGINT, ctrlC);
+			
 
 			if (rd == EOF)
 				end_of_file(data);
