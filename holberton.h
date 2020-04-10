@@ -23,7 +23,7 @@ typedef struct list_s
 	char *str;
 	struct list_s *next;
 } list_t;
-
+char *get_env(void);
 list_t *add_node(list_t **head, const char *str);
 int _divisor(char *_path, list_t **head);
 char **com_split(char *);

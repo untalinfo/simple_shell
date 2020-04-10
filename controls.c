@@ -18,7 +18,6 @@ void print_prompt(void)
 void ctrlC(int sig)
 {
         (void) sig;
-		printf("aca");
         write(STDOUT_FILENO, "\n$ ", 3);
 		
 }
