@@ -29,7 +29,9 @@ int main(void)
 
 			if (_strcmp("exit", token[0]) == 0)
 				free_exit(_path, data, head, token), exit(-1);
-
+			else if (_strcmp("env", token[0]) == 0)
+				print_env();
+			else
 			_fork(token, head);
 			free_tok(token), free(data);
 			data = NULL, len = 0;

@@ -43,4 +43,5 @@ void free_list(list_t *head);
 char *_strdup(char *str);
 char *_strchr(char *s, char c);
 void free_exit(char *_path, char *data, list_t *head, char **token);
+void print_env(void);
 #endif
