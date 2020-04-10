@@ -20,3 +20,18 @@ char *_getenv(char *str)
 	}
 	return (path);
 }
+
+/**
+ * print_env - function print the enviroment
+ */
+void print_env(void)
+{
+	unsigned int i = 0;
+
+	while (environ[i])
+	{
+		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
+		write(STDOUT_FILENO, "\n", 1);
+		i++;
+	}
+}
