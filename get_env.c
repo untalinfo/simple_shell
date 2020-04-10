@@ -11,10 +11,10 @@ char *_getenv(char *str)
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
-		if ((environ[i][0] == 'P') && (environ[i][1] == 'A')
-			&& (environ[i][2] == 'T') && (environ[i][3] == 'H'))
+		if ((environ[i][0] == str[0]) && (environ[i][1] == str[1])
+			&& (environ[i][2] == str[2]) && (environ[i][3] == str[3]))
 		{
-			path = malloc(_strlen(environ[i]) - 4);
+			path = malloc(_strlen(environ[i]) - _strlen(str));
 			_strcpy(path, _strchr(environ[i], '/'));
 		}
 	}
