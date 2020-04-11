@@ -71,9 +71,15 @@ char **com_split(char *commands)
 	temp2 = malloc(sizeof(char) * _strlen(commands) + 1);
 	if (temp2 == NULL)
 		return (NULL);
-	_strcpy(temp2, commands);
-	tok = strtok(commands, " ");
 
+	_strcpy(temp2, commands);
+
+	tok = strtok(commands, " ");
+	if (*tok == '\n')
+		{
+			free(temp2);
+			return (NULL);			
+		}
 	while (tok)
 	{
 		len++;
