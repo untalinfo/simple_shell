@@ -37,3 +37,20 @@ void print_env(void)
 		i++;
 	}
 }
+
+void mod_pwd(char *str)
+{
+	int i;
+
+	for (i = 0; environ[i] != NULL; i++)
+	{
+		if ((environ[i][0] == 'P') && (environ[i][1] == 'W')
+			&& (environ[i][2] == 'D'))
+		{
+			//path = malloc(_strlen(environ[i]) - _strlen(str));
+			//if (path == NULL)
+			//	return (NULL);
+			_strcpy(_strchr(environ[i], '/'),str);
+		}
+	}
+}
