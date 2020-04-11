@@ -10,6 +10,7 @@
 #include <signal.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
+#include <limits.h>
 extern char **environ;
 /**
  * struct list_s - singly linked list
@@ -42,6 +43,8 @@ void _fork_fail(void);
 void free_list(list_t *head);
 char *_strdup(char *str);
 char *_strchr(char *s, char c);
-void free_exit(char *_path, char *data, list_t *head, char **token);
+void free_exit(char *_path, char *data, list_t *head, char **token, char *);
 void print_env(void);
+char * _cd(char **, char *);
+
 #endif
