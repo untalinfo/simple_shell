@@ -73,7 +73,10 @@ char **com_split(char *commands)
 
 	tok = strtok(commands, " ");
 	if (*tok == '\n')
-		free(temp2), return (NULL);
+	{
+		free(temp2);
+		 return (NULL);
+	}
 	while (tok)
 	{
 		len++;
