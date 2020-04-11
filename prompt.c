@@ -28,7 +28,7 @@ int main(void)
 			token = com_split(data);
 
 			if (_strcmp("exit", token[0]) == 0)
-				free_exit(_path, data, head, token), exit(-1);
+				free_exit(_path, data, head, token), exit(EXIT_SUCCESS);
 			else if (_strcmp("env", token[0]) == 0)
 				print_env();
 			else

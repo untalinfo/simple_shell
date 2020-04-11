@@ -15,6 +15,8 @@ char *_getenv(char *str)
 			&& (environ[i][2] == str[2]) && (environ[i][3] == str[3]))
 		{
 			path = malloc(_strlen(environ[i]) - _strlen(str));
+			if (path == NULL)
+				return (NULL);
 			_strcpy(path, _strchr(environ[i], '/'));
 		}
 	}

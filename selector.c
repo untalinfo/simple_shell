@@ -44,11 +44,11 @@ int _divisor(char *_path, list_t **head)
 	char *str;
 
 	str = strtok(_path, ":");
-		while (str != NULL)
-		{
-			add_node(head, str);
-			str = strtok(NULL, ":");
-		}
+	while (str != NULL)
+	{
+		add_node(head, str);
+		str = strtok(NULL, ":");
+	}
 	return (0);
 }
 
@@ -81,9 +81,9 @@ char **com_split(char *commands)
 	}
 
 	token = malloc(sizeof(char *) * (len + 1));
-
 	if (token == NULL)
 		return (NULL);
+
 	temp = strtok(temp2, " \n");
 	i = 0;
 	while (temp != NULL)
@@ -102,4 +102,3 @@ char **com_split(char *commands)
 	free(temp2);
 	return (token);
 }
-
