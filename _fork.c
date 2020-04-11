@@ -15,25 +15,25 @@ int _fork(char **token, const list_t *head)
 
 	hijo = fork();
 
-			if (hijo < 0)
-				_fork_fail();
-			if (hijo == 0)
+	if (hijo < 0)
+		_fork_fail();
+	if (hijo == 0)
+	{
+		if (stat(token[i], &st) == 0)
+		{
+			if (execve(token[0], token, NULL) == -1)
 			{
-				if (stat(token[i], &st) == 0)
-				{
-					if (execve(token[0], token, NULL) == -1)
-					{
-						perror("Error: ");
-						return (-1);
-					}
-				}
-				else
-					search_path(token, head);
-				exit(-1);
+				perror("Error: ");
+				return (-1);
 			}
-			else
-				wait(&w);
-	return (1);
+		}
+		else
+			search_path(token, head);
+		exit(-1);
+	}
+	else
+		wait(&w);
+	return (EXIT_SUCCESS);
 }
 /**
  * _fork_fail - function that print the erro when fork fail

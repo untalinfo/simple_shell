@@ -64,7 +64,10 @@ quits the program, exit the shell.
 .I sh(1)
 , 
 .I bash(1)
-
+.SH BUGS
+This
+.B whereis
+command has bugs in Ubuntu 14.04 LTS, but it works fine on later versions.
 .SH AUTHORS
 Dairo Facundo Duarte <dairof7@gmail.com>
 .br
