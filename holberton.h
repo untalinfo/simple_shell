@@ -46,5 +46,5 @@ char *_strchr(char *s, char c);
 void free_exit(char *_path, char *data, list_t *head, char **token, char *);
 void print_env(void);
 char * _cd(char **, char *);
-
+void mod_pwd(char *current);
 #endif
