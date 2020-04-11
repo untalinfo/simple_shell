@@ -46,10 +46,11 @@ void free_tok(char **token)
  * @token: double pointer to elements that were stored in the token
  * Return: none
  */
-void free_exit(char *_path, char *data, list_t *head, char **token)
+void free_exit(char *_path, char *data, list_t *head, char **token, char *current)
 {
 	free(_path);
 	free(data);
 	free_list(head);
 	free_tok(token);
+	free(current);
 }

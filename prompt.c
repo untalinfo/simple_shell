@@ -6,13 +6,14 @@
  */
 int main(void)
 {
-
+	char *current = NULL;
 	char *data = NULL, *_path;
 	ssize_t rd;
 	list_t *head;
 	size_t len = 0;
 	char **token = NULL;
 
+	current = malloc (PATH_MAX);
 	head = NULL, _path = _getenv("PATH");
 	_divisor(_path, &head);
 
@@ -29,11 +30,13 @@ int main(void)
 			if (token == NULL)
 				continue;
 			if (_strcmp("exit", token[0]) == 0)
-				free_exit(_path, data, head, token), exit(EXIT_SUCCESS);
+				free_exit(_path, data, head, token, current), exit(EXIT_SUCCESS);
 			else if (_strcmp("env", token[0]) == 0)
 				print_env();
+			else if (_strcmp("cd", token[0]) == 0)
+				current = _cd(token, current);
 			else
-			_fork(token, head);
+				_fork(token, head);
 			free_tok(token), free(data);
 			data = NULL, len = 0;
 		}
