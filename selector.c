@@ -19,9 +19,7 @@ void search_path(char **command, const list_t *h)
 		if (stat(bin_com, &st) == 0)
 		{
 			if (execve(bin_com, command, NULL) == -1)
-			{
-			perror("Error: ");
-			}
+				perror("Error: ");
 		}
 
 		h = h->next;
@@ -71,25 +69,22 @@ char **com_split(char *commands)
 	temp2 = malloc(sizeof(char) * _strlen(commands) + 1);
 	if (temp2 == NULL)
 		return (NULL);
-
 	_strcpy(temp2, commands);
 
 	tok = strtok(commands, " ");
 	if (*tok == '\n')
-		{
-			free(temp2);
-			return (NULL);			
-		}
+	{
+		free(temp2);
+		 return (NULL);
+	}
 	while (tok)
 	{
 		len++;
 		tok = strtok(NULL, " ");
 	}
-
 	token = malloc(sizeof(char *) * (len + 1));
 	if (token == NULL)
 		return (NULL);
-
 	temp = strtok(temp2, " \n");
 	i = 0;
 	while (temp != NULL)
