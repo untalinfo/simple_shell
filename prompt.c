@@ -21,6 +21,7 @@ int main(void)
 		_path = _getenv("PATH");
 		if (_path != NULL)
 			_divisor(_path, &head);
+		
 		print_prompt();
 		signal(SIGINT, ctrlC);
 		rd = getline(&data, &len, stdin);

@@ -8,8 +8,8 @@
 int _fork(char **token, const list_t *head)
 {
 
-	int i = 0;
-	struct stat st;
+	//int i = 0;
+	//struct stat st;
 	pid_t hijo;
 	int w = 0;
 
@@ -19,16 +19,19 @@ int _fork(char **token, const list_t *head)
 		_fork_fail();
 	if (hijo == 0)
 	{
-		if (stat(token[i], &st) == 0)
+		if (search_path(token, head) == -1)
 		{
-			if (execve(token[0], token, NULL) == -1)
-			{
-				perror("Error: ");
-				return (-1);
-			}
+			//if (stat(token[i], &st) == 0)
+			//{
+				if (execve(token[0], token, NULL) == -1)
+				{
+					perror("Error: ");
+					return (-1);
+				}
+			//}
 		}
-		else
-			search_path(token, head);
+		write(1, token[0], _strlen(token[0]));
+		write(1, ": command not found\n", 20);	
 		exit(-1);
 	}
 	else
