@@ -4,7 +4,7 @@
  * @command: command input
  * @h: head of the path linked list
  */
-void search_path(char **command, const list_t *h)
+int search_path(char **command, const list_t *h)
 {
 	char *bin_com = NULL;
 	struct stat st;
@@ -26,8 +26,9 @@ void search_path(char **command, const list_t *h)
 		free(bin_com);
 		bin_com = NULL;
 	}
-	write(1, command[0], _strlen(command[0]));
-	write(1, ": command not found\n", 20);
+	
+	
+	return(-1);
 }
 
 /**
@@ -42,8 +43,7 @@ int _divisor(char *_path, list_t **head)
 	char *str;
 	char *tmppath=NULL;
 	tmppath = malloc(_strlen(_path)+1);
-	_strcpy(tmppath,_path);
-
+	_strcpy(tmppath, _path);
 	str = strtok(tmppath, ":");
 	while (str != NULL)
 	{

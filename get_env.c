@@ -14,7 +14,7 @@ char *_getenv(char *str)
 		if ((environ[i][0] == str[0]) && (environ[i][1] == str[1])
 			&& (environ[i][2] == str[2]) && (environ[i][3] == str[3]))
 		{
-			if (_strlen(environ[i]) > 5)
+			if (_strlen(environ[i]) > 5 && (environ[i][5] != ':'))
 			{	
 				path = malloc(_strlen(environ[i]) - _strlen(str));
 				if (path == NULL)
