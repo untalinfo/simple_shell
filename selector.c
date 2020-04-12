@@ -40,13 +40,17 @@ void search_path(char **command, const list_t *h)
 int _divisor(char *_path, list_t **head)
 {
 	char *str;
+	char *tmppath=NULL;
+	tmppath = malloc(_strlen(_path)+1);
+	_strcpy(tmppath,_path);
 
-	str = strtok(_path, ":");
+	str = strtok(tmppath, ":");
 	while (str != NULL)
 	{
 		add_node(head, str);
 		str = strtok(NULL, ":");
 	}
+	free(tmppath);
 	return (0);
 }
 

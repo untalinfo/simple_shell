@@ -14,10 +14,13 @@ int main(void)
 	char **token = NULL;
 
 	current = malloc (PATH_MAX);
-	head = NULL, _path = _getenv("PATH");
-	_divisor(_path, &head);
-
+	
+	
 	do {
+		head = NULL; 
+		_path = _getenv("PATH");
+		if (_path != NULL)
+			_divisor(_path, &head);
 		print_prompt();
 		signal(SIGINT, ctrlC);
 		rd = getline(&data, &len, stdin);
@@ -35,9 +38,11 @@ int main(void)
 				print_env();
 			else if (_strcmp("cd", token[0]) == 0)
 				current = _cd(token, current);
+			else if (_strcmp("$PATH", token[0]) == 0)
+				write(1,_path,strlen(_path));
 			else
 				_fork(token, head);
-			free_tok(token), free(data);
+			free_tok(token), free(data), free(_path), free_list(head);
 			data = NULL, len = 0;
 		}
 	} while (rd != -1);
