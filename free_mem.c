@@ -53,4 +53,5 @@ void free_exit(char *_path, char *data, list_t *head, char **token, char *curren
 	free_list(head);
 	free_tok(token);
 	free(current);
+	exit(EXIT_SUCCESS);
 }
