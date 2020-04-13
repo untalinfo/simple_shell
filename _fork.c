@@ -31,8 +31,8 @@ int _fork(char **token, const list_t *head)
 			}
 		}
 		write(1, token[0], _strlen(token[0]));
-		write(1, ": command not found\n", 20);
-		exit(-1);
+		write(1, ": No such file or directory\n", 28);
+		exit(2);
 	}
 	else
 		wait(&w);
