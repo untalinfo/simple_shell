@@ -1,25 +1,25 @@
 #include "holberton.h"
 /**
  * search_path - verify the command in the path, return the binary address
- * @command: command input
+ * @token: commands splited in array
  * @h: head of the path linked list
  * Return: -1 if path not found
  */
-int search_path(char **command, const list_t *h)
+int search_path(char **token, const list_t *h)
 {
 	char *bin_com = NULL;
 	struct stat st;
 
 	while (h != NULL)
 	{
-		bin_com = malloc(_strlen(command[0]) + _strlen(h->str) + 1);
+		bin_com = malloc(_strlen(token[0]) + _strlen(h->str) + 1);
 		_strcpy(bin_com, h->str);
 		_strncat(bin_com, "/", 1);
-		_strncat(bin_com, command[0], strlen(command[0]));
+		_strncat(bin_com, token[0], strlen(token[0]));
 
 		if (stat(bin_com, &st) == 0)
 		{
-			if (execve(bin_com, command, NULL) == -1)
+			if (execve(bin_com, token, NULL) == -1)
 				perror("Error: ");
 		}
 
@@ -34,7 +34,7 @@ int search_path(char **command, const list_t *h)
  * _divisor - split the path and store it in linked list
  * @_path: the path
  * @head: head of the path linked list
- * Return: FALTA
+ * Return: 0 if success
  */
 
 int _divisor(char *_path, list_t **head)
@@ -43,6 +43,8 @@ int _divisor(char *_path, list_t **head)
 	char *tmppath = NULL;
 
 	tmppath = malloc(_strlen(_path) + 1);
+	if (tmppath == NULL)
+		return (-1);
 	_strcpy(tmppath, _path);
 	str = strtok(tmppath, ":");
 	while (str != NULL)
@@ -57,7 +59,7 @@ int _divisor(char *_path, list_t **head)
 /**
  * com_split - split the input commands and flags and
  * store it in double pointer
- * @commands: command input
+ * @commands: command input from getline
  * Return: the double pointer with commands
  */
 

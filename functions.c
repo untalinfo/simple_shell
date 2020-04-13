@@ -1,7 +1,7 @@
 #include "holberton.h"
 /**
  * _cd - function that allows to change directory
- * @token: pointer to toke
+ * @token: pointer to commands from tok
  * @current: pointer to current directory
  * Return: current
  */
@@ -12,7 +12,8 @@ char *_cd(char **token, char *current)
 
 	buff = malloc(PATH_MAX);
 	/*getcwd(p, len);*/
-
+	if (buff == NULL)
+		return (NULL);
 	getcwd(buff, PATH_MAX);
 
 	if (token[1] == NULL)
