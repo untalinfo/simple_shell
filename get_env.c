@@ -1,7 +1,7 @@
 #include "holberton.h"
 /**
  * _getenv - function to get the eviroment variable
- * @str: string of the enviroment variables
+ * @str: string PATH
  * Return: The value of variable
  */
 char *_getenv(char *str)
@@ -47,8 +47,8 @@ void print_env(void)
 }
 
 /**
- * mod_pwd - function that display moed pwd
- * @str: pointer to string
+ * mod_pwd - function that modify pwd in the environ variable
+ * @str: pointer to current directory
  * Return: none
  */
 void mod_pwd(char *str)

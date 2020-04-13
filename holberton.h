@@ -47,4 +47,5 @@ void free_exit(char *_path, char *data, list_t *head, char **token, char *);
 void print_env(void);
 char * _cd(char **, char *);
 void mod_pwd(char *current);
+void exec(char **token, char *current, char *_path, list_t * head, char * data);
 #endif
