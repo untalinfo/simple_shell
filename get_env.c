@@ -8,14 +8,14 @@ char *_getenv(char *str)
 {
 	int i;
 	char *path;
-	
+
 	for (i = 0; environ[i] != NULL; i++)
 	{
 		if ((environ[i][0] == str[0]) && (environ[i][1] == str[1])
 			&& (environ[i][2] == str[2]) && (environ[i][3] == str[3]))
 		{
 			if (_strlen(environ[i]) > 5 && (environ[i][5] != ':'))
-			{	
+			{
 				path = malloc(_strlen(environ[i]) - _strlen(str));
 				if (path == NULL)
 					return (NULL);
@@ -25,7 +25,6 @@ char *_getenv(char *str)
 			{
 				path = NULL;
 			}
-			
 		}
 	}
 	return (path);
@@ -33,6 +32,7 @@ char *_getenv(char *str)
 
 /**
  * print_env - function print the enviroment
+ * Return: None
  */
 void print_env(void)
 {
@@ -46,6 +46,11 @@ void print_env(void)
 	}
 }
 
+/**
+ * mod_pwd - function that display moed pwd
+ * @str: pointer to string
+ * Return: none
+ */
 void mod_pwd(char *str)
 {
 	int i;
@@ -55,10 +60,7 @@ void mod_pwd(char *str)
 		if ((environ[i][0] == 'P') && (environ[i][1] == 'W')
 			&& (environ[i][2] == 'D'))
 		{
-			//path = malloc(_strlen(environ[i]) - _strlen(str));
-			//if (path == NULL)
-			//	return (NULL);
-			_strcpy(_strchr(environ[i], '/'),str);
+			_strcpy(_strchr(environ[i], '/'), str);
 		}
 	}
 }
