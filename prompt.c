@@ -13,15 +13,12 @@ int main(void)
 	size_t len = 0;
 	char **token = NULL;
 
-	current = malloc (PATH_MAX);
-	
-	
+	current = malloc(PATH_MAX);
 	do {
-		head = NULL; 
+		head = NULL;
 		_path = _getenv("PATH");
 		if (_path != NULL)
 			_divisor(_path, &head);
-		
 		print_prompt();
 		signal(SIGINT, ctrlC);
 		rd = getline(&data, &len, stdin);
@@ -29,7 +26,6 @@ int main(void)
 		{
 			if (rd == EOF)
 				end_of_file(data);
-
 			token = com_split(data);
 			if (token == NULL)
 				continue;
@@ -40,7 +36,7 @@ int main(void)
 			else if (_strcmp("cd", token[0]) == 0)
 				current = _cd(token, current);
 			else if (_strcmp("$PATH", token[0]) == 0)
-				write(1,_path,strlen(_path));
+				write(1, _path, strlen(_path));
 			else
 				_fork(token, head);
 			free_tok(token), free(data), free(_path), free_list(head);

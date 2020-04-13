@@ -3,6 +3,7 @@
  * search_path - verify the command in the path, return the binary address
  * @command: command input
  * @h: head of the path linked list
+ * Return: -1 if path not found
  */
 int search_path(char **command, const list_t *h)
 {
@@ -26,9 +27,7 @@ int search_path(char **command, const list_t *h)
 		free(bin_com);
 		bin_com = NULL;
 	}
-	
-	
-	return(-1);
+	return (-1);
 }
 
 /**
@@ -41,8 +40,9 @@ int search_path(char **command, const list_t *h)
 int _divisor(char *_path, list_t **head)
 {
 	char *str;
-	char *tmppath=NULL;
-	tmppath = malloc(_strlen(_path)+1);
+	char *tmppath = NULL;
+
+	tmppath = malloc(_strlen(_path) + 1);
 	_strcpy(tmppath, _path);
 	str = strtok(tmppath, ":");
 	while (str != NULL)

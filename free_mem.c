@@ -44,14 +44,15 @@ void free_tok(char **token)
  * @data: Pointer to
  * @head: pointer to head of linkend list
  * @token: double pointer to elements that were stored in the token
+ * @cur: pointer to current directory
  * Return: none
  */
-void free_exit(char *_path, char *data, list_t *head, char **token, char *current)
+void free_exit(char *_path, char *data, list_t *head, char **token, char *cur)
 {
 	free(_path);
 	free(data);
 	free_list(head);
 	free_tok(token);
-	free(current);
+	free(cur);
 	exit(EXIT_SUCCESS);
 }
