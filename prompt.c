@@ -13,7 +13,9 @@ int main(int ac, char **av)
 	size_t len = 0;
 	char **token = NULL;
 	int count=0;
-	
+	int error = 0;
+	int *er = &error;
+
 	(void) ac;
 	current = malloc(PATH_MAX);
 	if (current == NULL)
@@ -41,7 +43,7 @@ int main(int ac, char **av)
 				perror("Error: ");
 				continue;/*pendiente*/
 			}
-			exec(token,  current, _path, head, data, count, av);
+			exec(token,  current, _path, head, data, count, av, er);
 			free_tok(token), free(data), free(_path), free_list(head);
 			data = NULL, len = 0;
 		}
@@ -60,10 +62,10 @@ int main(int ac, char **av)
  * @data: pointer to elements of getline
  * Return: None
  */
-void exec(char **token, char *current, char *_path, list_t *head, char *data, int c, char **av)
+void exec(char **token, char *current, char *_path, list_t *head, char *data, int c, char **av, int *er)
 {
 	if (_strcmp("exit", token[0]) == 0)
-		free_exit(_path, data, head, token, current), exit(EXIT_SUCCESS);
+		free_exit(_path, data, head, token, current, er);
 	else if (_strcmp("env", token[0]) == 0)
 		print_env();
 	else if (_strcmp("cd", token[0]) == 0)
@@ -71,5 +73,5 @@ void exec(char **token, char *current, char *_path, list_t *head, char *data, in
 	else if (_strcmp("$PATH", token[0]) == 0)
 		write(1, _path, strlen(_path));
 	else
-		_fork(token, head, c, av);
+		_fork(token, head, c, av, er);
 }
