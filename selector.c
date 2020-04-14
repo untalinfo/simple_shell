@@ -19,7 +19,7 @@ int search_path(char **token, const list_t *h)
 
 		if (stat(bin_com, &st) == 0)
 		{
-			if (execve(bin_com, token, NULL) == -1)
+			if (execve(bin_com, token, environ) == -1)
 				perror("Error: ");
 		}
 

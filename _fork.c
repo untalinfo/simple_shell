@@ -23,7 +23,7 @@ int _fork(char **token, const list_t *head)
 		{
 			if (stat(token[i], &st) == 0)
 			{
-				if (execve(token[0], token, NULL) == -1)
+				if (execve(token[0], token, environ) == -1)
 				{
 					perror("Error: ");
 					return (-1);
