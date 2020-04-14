@@ -19,7 +19,9 @@ int main(int ac, char **av, char **env)
 		exit(12);/* pendiente validacion de error*/
 	if (ac > 1)
 		exit(EXIT_SUCCESS);
-	do {
+	print_prompt();
+	while ((rd = getline(&data, &len, stdin)))
+	{
 		head = NULL;
 		_path = _getenv("PATH", env);
 		if (_path != NULL)
@@ -28,7 +30,7 @@ int main(int ac, char **av, char **env)
 				free(_path), perror("Error: ");
 					continue;
 			}
-		print_prompt(), signal(SIGINT, ctrlC), rd = getline(&data, &len, stdin);
+		signal(SIGINT, ctrlC);
 		count++;
 		if (*data != '\n')
 		{
@@ -42,9 +44,9 @@ int main(int ac, char **av, char **env)
 			}
 			exec(token,  current, _path, head, data, count, av, er, env);
 			free_tok(token), free(data), free(_path), free_list(head);
-			data = NULL, len = 0;
+			data = NULL, len = 0, print_prompt();
 		}
-	} while (rd != -1);
+	} 
 	if (rd == -1)
 		exit(EXIT_FAILURE);
 	return (EXIT_SUCCESS);
