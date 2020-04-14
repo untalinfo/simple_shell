@@ -5,13 +5,14 @@
  * @head: pointer to head of linkend list
  * Return: return 1 if fork is success
  */
-int _fork(char **token, const list_t *head)
+int _fork(char **token, const list_t *head, int count,char **av)
 {
 
 	int i = 0;
 	struct stat st;
 	pid_t hijo;
 	int w = 0;
+	char msg[80];
 
 	hijo = fork();
 
@@ -19,19 +20,19 @@ int _fork(char **token, const list_t *head)
 		_fork_fail();
 	if (hijo == 0)
 	{
-		if (search_path(token, head) == -1)
+		if (search_path(token, head, count, av) == -1)
 		{
 			if (stat(token[i], &st) == 0)
 			{
 				if (execve(token[0], token, environ) == -1)
 				{
-					perror("Error: ");
+					perror("Error: "); /*verificar*/
 					return (-1);
 				}
 			}
 		}
-		write(1, token[0], _strlen(token[0]));
-		write(1, ": No such file or directory\n", 28);
+		sprintf(msg,"%s: %d: %s: not found\n", av[0], count, token[0]);
+		write(STDERR_FILENO, &msg, _strlen(msg));
 		exit(2);
 	}
 	else

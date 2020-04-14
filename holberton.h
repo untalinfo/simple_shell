@@ -31,9 +31,9 @@ char **com_split(char *);
 size_t print_list(const list_t *h);
 int _strlen(const char *s);
 char *_strncat(char *dest, char *src, int n);
-int search_path(char **command, const list_t *h);
+int search_path(char **command, const list_t *h, int, char **);
 char *_strcpy(char *dest, char *src);
-int _fork(char **token, const list_t *head);
+int _fork(char **token, const list_t *head, int, char **);
 void end_of_file(char *data);
 void print_prompt(void);
 void ctrlC(int sig);
@@ -47,5 +47,5 @@ void free_exit(char *_path, char *data, list_t *head, char **token, char *);
 void print_env(void);
 char * _cd(char **, char *);
 void mod_pwd(char *current);
-void exec(char **token, char *current, char *_path, list_t * head, char * data);
+void exec(char **token, char *current, char *_path, list_t * head, char * data, int, char **);
 #endif
