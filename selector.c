@@ -13,7 +13,7 @@ int search_path(char **token, const list_t *h, char **env)
 
 	while (h != NULL)
 	{
-		bin_com = malloc(_strlen(token[0]) + _strlen(h->str) + 1);
+		bin_com = malloc(_strlen(token[0]) + _strlen(h->str) + 2);
 		_strcpy(bin_com, h->str);
 		_strncat(bin_com, "/", 1);
 		_strncat(bin_com, token[0], _strlen(token[0]));
