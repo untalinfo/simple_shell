@@ -5,7 +5,7 @@
  * @head: pointer to head of linkend list
  * Return: return 1 if fork is success
  */
-int _fork(char **token, const list_t *head, int count,char **av)
+int _fork(char **token, const list_t *head, int count,char **av, int *er)
 {
 
 	int i = 0;
@@ -26,17 +26,22 @@ int _fork(char **token, const list_t *head, int count,char **av)
 			{
 				if (execve(token[0], token, environ) == -1)
 				{
-					perror("Error: "); /*verificar*/
-					return (-1);
+					sprintf(msg,"%s: cannot access '%s': No such file or directory \n", token[0], token[1]);
+					write(STDERR_FILENO, &msg, _strlen(msg));
+					exit(2);
 				}
 			}
 		}
 		sprintf(msg,"%s: %d: %s: not found\n", av[0], count, token[0]);
 		write(STDERR_FILENO, &msg, _strlen(msg));
-		exit(2);
+		exit(127);
 	}
 	else
+	{
 		wait(&w);
+		if (WIFEXITED(w))
+			*er = WEXITSTATUS(w);
+	}
 	return (EXIT_SUCCESS);
 }
 /**

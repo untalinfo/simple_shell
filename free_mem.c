@@ -47,12 +47,12 @@ void free_tok(char **token)
  * @cur: pointer to current directory
  * Return: none
  */
-void free_exit(char *_path, char *data, list_t *head, char **token, char *cur)
+void free_exit(char *_path, char *data, list_t *head, char **token, char *cur, int *er)
 {
 	free(_path);
 	free(data);
 	free_list(head);
 	free_tok(token);
 	free(cur);
-	exit(EXIT_SUCCESS);
+	exit(*er);
 }
