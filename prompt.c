@@ -10,7 +10,7 @@ int main(int ac, char **av, char **env)
 {
 	char *data = NULL, *_path, *current = NULL, **token = NULL;
 	ssize_t rd;
-	list_t *head;
+	list_t *head = NULL;
 	size_t len = 0;
 	int count = 0, error = 0, *er = &error;
 
@@ -22,7 +22,6 @@ int main(int ac, char **av, char **env)
 	print_prompt();
 	while ((rd = getline(&data, &len, stdin)))
 	{
-		head = NULL;
 		_path = _getenv("PATH", env);
 		if (_path != NULL)
 			if (_divisor(_path, &head) == -1)/*por verificar*/
@@ -30,8 +29,7 @@ int main(int ac, char **av, char **env)
 				free(_path), perror("Error: ");
 					continue;
 			}
-		signal(SIGINT, ctrlC);
-		count++;
+		signal(SIGINT, ctrlC), count++;
 		if (*data != '\n')
 		{
 			if (rd == EOF)
@@ -44,9 +42,9 @@ int main(int ac, char **av, char **env)
 			}
 			exec(token,  current, _path, head, data, count, av, er, env);
 			free_tok(token), free(data), free(_path), free_list(head);
-			data = NULL, len = 0, print_prompt();
+			data = NULL, len = 0, print_prompt(), head = NULL;
 		}
-	} 
+	}
 	if (rd == -1)
 		exit(EXIT_FAILURE);
 	return (EXIT_SUCCESS);
