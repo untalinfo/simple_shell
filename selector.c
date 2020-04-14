@@ -3,6 +3,7 @@
  * search_path - verify the command in the path, return the binary address
  * @token: commands splited in array
  * @h: head of the path linked list
+ * @env: enviroment
  * Return: -1 if path not found
  */
 int search_path(char **token, const list_t *h, char **env)
