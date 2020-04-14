@@ -25,11 +25,11 @@ void ctrlC(int sig)
  * @data: data of getline
  * Return: none
  */
-void end_of_file(char *data)
+void end_of_file(char *data, int *er)
 {
 
 	if (isatty(STDIN_FILENO))
 		write(STDOUT_FILENO, "\n", 1);
 	free(data);
-	exit(EXIT_SUCCESS);
+	exit(*er);
 }

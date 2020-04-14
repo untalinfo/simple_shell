@@ -34,7 +34,7 @@ char *_strncat(char *dest, char *src, int n);
 int search_path(char **command, const list_t *h);
 char *_strcpy(char *dest, char *src);
 int _fork(char **token, const list_t *head, int, char **, int *);
-void end_of_file(char *data);
+void end_of_file(char *data, int *);
 void print_prompt(void);
 void ctrlC(int sig);
 int _strcmp(char *s1, char *s2);
