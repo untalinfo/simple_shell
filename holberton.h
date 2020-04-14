@@ -25,10 +25,9 @@ typedef struct list_s
 	struct list_s *next;
 } list_t;
 char *_getenv(char *);
-list_t *add_node(list_t **head, const char *str);
+list_t *add_node(list_t **head, char *str);
 int _divisor(char *_path, list_t **head);
 char **com_split(char *);
-size_t print_list(const list_t *h);
 int _strlen(const char *s);
 char *_strncat(char *dest, char *src, int n);
 int search_path(char **command, const list_t *h);
