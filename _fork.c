@@ -8,7 +8,8 @@
  * @er: pointer to variable stored status error
  * Return: return 1 if fork is success
  */
-int _fork(char **token, const list_t *head, int count, char **av, int *er)
+int _fork(char **token, const list_t *head, int count, char **av,
+ int *er, char **env)
 {
 
 	int i = 0;
@@ -23,11 +24,11 @@ int _fork(char **token, const list_t *head, int count, char **av, int *er)
 		_fork_fail();
 	if (hijo == 0)
 	{
-		if (search_path(token, head) == -1)
+		if (search_path(token, head, env) == -1)
 		{
 			if (stat(token[i], &st) == 0)
 			{
-				if (execve(token[0], token, environ) == -1)
+				if (execve(token[0], token, env) == -1)
 				{
 					sprintf(msg, "%s: cannot access '%s': No such file or directory \n",
 						token[0], token[1]);
