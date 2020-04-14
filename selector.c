@@ -5,10 +5,11 @@
  * @h: head of the path linked list
  * Return: -1 if path not found
  */
-int search_path(char **token, const list_t *h)
+int search_path(char **token, const list_t *h, int count, char **av)
 {
 	char *bin_com = NULL;
 	struct stat st;
+	char msg[80];
 
 	while (h != NULL)
 	{
@@ -20,7 +21,10 @@ int search_path(char **token, const list_t *h)
 		if (stat(bin_com, &st) == 0)
 		{
 			if (execve(bin_com, token, environ) == -1)
-				perror("Error: ");
+			{	
+				sprintf(msg,"%s: %d: %s: not found\n", av[0], count, token[0]);
+				write(STDERR_FILENO, &msg, _strlen(msg));
+			}
 		}
 
 		h = h->next;
@@ -91,8 +95,6 @@ char **com_split(char *commands)
 	i = 0;
 	while (temp != NULL)
 	{
-		if (_strcmp(temp, "l") == 0)
-			temp = "ls";
 		token[i] = _strdup(temp);
 		if (token[i] == NULL)
 		{	/*FREE TOKEN*/
