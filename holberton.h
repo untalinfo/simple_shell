@@ -9,7 +9,6 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <sys/stat.h>
-#include <sys/wait.h>
 #include <limits.h>
 extern char **environ;
 /**
