@@ -91,6 +91,8 @@ char **com_split(char *commands)
 	i = 0;
 	while (temp != NULL)
 	{
+		if (_strcmp(temp, "l") == 0)
+			temp = "ls";
 		token[i] = _strdup(temp);
 		if (token[i] == NULL)
 		{	/*FREE TOKEN*/
