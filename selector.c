@@ -5,7 +5,7 @@
  * @h: head of the path linked list
  * Return: -1 if path not found
  */
-int search_path(char **token, const list_t *h)
+int search_path(char **token, const list_t *h, char **env)
 {
 	char *bin_com = NULL;
 	struct stat st;
@@ -20,7 +20,7 @@ int search_path(char **token, const list_t *h)
 
 		if (stat(bin_com, &st) == 0)
 		{
-			if (execve(bin_com, token, environ) == -1)
+			if (execve(bin_com, token, env) == -1)
 			{
 				sprintf(msg, "%s: cannot access '%s': No such file or directory \n",
 					token[0], token[1]);

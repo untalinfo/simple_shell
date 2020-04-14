@@ -1,7 +1,6 @@
 #ifndef HOLBERTON
 #define HOLBERTON
 #define _GNU_SOURCE
-#define MAX_ARG 10
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -9,8 +8,6 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <sys/stat.h>
-#include <limits.h>
-extern char **environ;
 /**
  * struct list_s - singly linked list
  * @str: string - (malloc'ed string)
@@ -23,15 +20,15 @@ typedef struct list_s
 	char *str;
 	struct list_s *next;
 } list_t;
-char *_getenv(char *);
+char *_getenv(char *, char **);
 list_t *add_node(list_t **head, char *str);
 int _divisor(char *_path, list_t **head);
 char **com_split(char *);
 int _strlen(const char *s);
 char *_strncat(char *dest, char *src, int n);
-int search_path(char **command, const list_t *h);
+int search_path(char **command, const list_t *h, char **);
 char *_strcpy(char *dest, char *src);
-int _fork(char **token, const list_t *head, int, char **, int *);
+int _fork(char **token, const list_t *head, int, char **, int *, char **);
 void end_of_file(char *data, int *);
 void print_prompt(void);
 void ctrlC(int sig);
@@ -42,8 +39,8 @@ void free_list(list_t *head);
 char *_strdup(char *str);
 char *_strchr(char *s, char c);
 void free_exit(char *_path, char *data, list_t *head, char **token, char *, int *);
-void print_env(void);
+void print_env(char **);
 char * _cd(char **, char *);
-void mod_pwd(char *current);
-void exec(char **token, char *current, char *_path, list_t * head, char * data, int, char **, int *);
+void mod_pwd(char *current, char **);
+void exec(char **token, char *current, char *_path, list_t * head, char * data, int, char **, int *, char**);
 #endif

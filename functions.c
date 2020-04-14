@@ -10,16 +10,16 @@ char *_cd(char **token, char *current)
 	/*size_t len = PATH_MAX;*/
 	char *buff = NULL;
 
-	buff = malloc(PATH_MAX);
+	buff = malloc(200);
 	/*getcwd(p, len);*/
 	if (buff == NULL)
 		return (NULL);
-	getcwd(buff, PATH_MAX);
+	getcwd(buff, 200);
 
 	if (token[1] == NULL)
 	{
 		chdir("/home");
-		getcwd(current, PATH_MAX);
+		getcwd(current, 200);
 		/*mod_pwd(current);*/
 	}
 	else if (_strcmp(token[1], "-") == 0)

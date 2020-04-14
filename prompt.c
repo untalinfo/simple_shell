@@ -5,7 +5,7 @@
  * @av: double pointer to arguments
  * Return: Always 0.
  */
-int main(int ac, char **av)
+int main(int ac, char **av , char **env)
 {
 	char *data = NULL, *_path, *current = NULL;
 	ssize_t rd;
@@ -15,14 +15,14 @@ int main(int ac, char **av)
 	int count = 0, error = 0;
 	int *er = &error;
 
-	current = malloc(PATH_MAX);
+	current = malloc(200);
 	if (current == NULL) 
 		exit(12);/* pendiente validacion de error*/
 	if (ac > 1)
 		exit(EXIT_SUCCESS);
 	do {
 		head = NULL;
-		_path = _getenv("PATH");
+		_path = _getenv("PATH", env);
 		if (_path != NULL)
 			if (_divisor(_path, &head) == -1)/*por verificar*/
 			{
@@ -43,7 +43,7 @@ int main(int ac, char **av)
 				perror("Error: ");
 				continue;/*pendiente*/
 			}
-			exec(token,  current, _path, head, data, count, av, er);
+			exec(token,  current, _path, head, data, count, av, er, env);
 			free_tok(token), free(data), free(_path), free_list(head);
 			data = NULL, len = 0;
 		}
@@ -66,16 +66,16 @@ int main(int ac, char **av)
  * Return: None
  */
 void exec(char **token, char *current, char *_path, list_t *head,
-		char *data, int c, char **av, int *er)
+		char *data, int c, char **av, int *er, char **env)
 {
 	if (_strcmp("exit", token[0]) == 0)
 		free_exit(_path, data, head, token, current, er);
 	else if (_strcmp("env", token[0]) == 0)
-		print_env();
+		print_env(env);
 	else if (_strcmp("cd", token[0]) == 0)
 		current = _cd(token, current);
 	else if (_strcmp("$PATH", token[0]) == 0)
 		write(1, _path, _strlen(_path));
 	else
-		_fork(token, head, c, av, er);
+		_fork(token, head, c, av, er, env);
 }
