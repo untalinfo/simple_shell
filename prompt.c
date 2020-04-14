@@ -4,7 +4,7 @@
  *
  * Return: Always 0.
  */
-int main(void)
+int main(int ac, char **av)
 {
 	char *current = NULL;
 	char *data = NULL, *_path;
@@ -12,7 +12,9 @@ int main(void)
 	list_t *head;
 	size_t len = 0;
 	char **token = NULL;
+	int count=0;
 
+	ac = ac;
 	current = malloc(PATH_MAX);
 	if (current == NULL)
 		return (12);/* pendiente validacion de error*/
@@ -28,6 +30,7 @@ int main(void)
 		print_prompt();
 		signal(SIGINT, ctrlC);
 		rd = getline(&data, &len, stdin);
+		count++;
 		if (*data != '\n')
 		{
 			if (rd == EOF)
@@ -38,7 +41,7 @@ int main(void)
 				perror("Error: ");
 				continue;/*pendiente*/
 			}
-			exec(token,  current, _path, head, data);
+			exec(token,  current, _path, head, data, count, av);
 			free_tok(token), free(data), free(_path), free_list(head);
 			data = NULL, len = 0;
 		}
@@ -57,7 +60,7 @@ int main(void)
  * @data: pointer to elements of getline
  * Return: None
  */
-void exec(char **token, char *current, char *_path, list_t *head, char *data)
+void exec(char **token, char *current, char *_path, list_t *head, char *data, int c, char **av)
 {
 	if (_strcmp("exit", token[0]) == 0)
 		free_exit(_path, data, head, token, current), exit(EXIT_SUCCESS);
@@ -68,5 +71,5 @@ void exec(char **token, char *current, char *_path, list_t *head, char *data)
 	else if (_strcmp("$PATH", token[0]) == 0)
 		write(1, _path, strlen(_path));
 	else
-		_fork(token, head);
+		_fork(token, head, c, av);
 }
