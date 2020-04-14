@@ -3,8 +3,9 @@
  * _getenv - function to get the eviroment variable
  * @str: string PATH
  * Return: The value of variable
+ * @env: enviroment
  */
-char *_getenv(char *str, char** env)
+char *_getenv(char *str, char **env)
 {
 	int i;
 	char *path;
@@ -32,6 +33,7 @@ char *_getenv(char *str, char** env)
 
 /**
  * print_env - function print the enviroment
+ * @env: enviroment
  * Return: None
  */
 void print_env(char **env)
@@ -49,6 +51,7 @@ void print_env(char **env)
 /**
  * mod_pwd - function that modify pwd in the environ variable
  * @str: pointer to current directory
+ * @env: enviroment
  * Return: none
  */
 void mod_pwd(char *str, char **env)

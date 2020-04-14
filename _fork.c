@@ -6,10 +6,11 @@
  * @count: counter executed commands
  * @av: double pointer to aguments
  * @er: pointer to variable stored status error
+ * @env: enviroment
  * Return: return 1 if fork is success
  */
 int _fork(char **token, const list_t *head, int count, char **av,
- int *er, char **env)
+int *er, char **env)
 {
 
 	int i = 0;

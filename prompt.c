@@ -3,20 +3,19 @@
  * main -  main function to run the programm
  * @ac: number elements of av
  * @av: double pointer to arguments
+ * @env: enviroment
  * Return: Always 0.
  */
-int main(int ac, char **av , char **env)
+int main(int ac, char **av, char **env)
 {
-	char *data = NULL, *_path, *current = NULL;
+	char *data = NULL, *_path, *current = NULL, **token = NULL;
 	ssize_t rd;
 	list_t *head;
 	size_t len = 0;
-	char **token = NULL;
-	int count = 0, error = 0;
-	int *er = &error;
+	int count = 0, error = 0, *er = &error;
 
 	current = malloc(200);
-	if (current == NULL) 
+	if (current == NULL)
 		exit(12);/* pendiente validacion de error*/
 	if (ac > 1)
 		exit(EXIT_SUCCESS);
@@ -27,11 +26,9 @@ int main(int ac, char **av , char **env)
 			if (_divisor(_path, &head) == -1)/*por verificar*/
 			{
 				free(_path), perror("Error: ");
-				continue;
+					continue;
 			}
-		print_prompt();
-		signal(SIGINT, ctrlC);
-		rd = getline(&data, &len, stdin);
+		print_prompt(), signal(SIGINT, ctrlC), rd = getline(&data, &len, stdin);
 		count++;
 		if (*data != '\n')
 		{
@@ -48,7 +45,7 @@ int main(int ac, char **av , char **env)
 			data = NULL, len = 0;
 		}
 	} while (rd != -1);
-	if(rd == -1)
+	if (rd == -1)
 		exit(EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
@@ -63,6 +60,7 @@ int main(int ac, char **av , char **env)
  * @c: counter to commands executed
  * @av: double pointer to arguments
  * @er: double pointer to variable status error
+ * @env: enviroment
  * Return: None
  */
 void exec(char **token, char *current, char *_path, list_t *head,
