@@ -13,8 +13,8 @@ int main(int ac, char **av)
 	size_t len = 0;
 	char **token = NULL;
 	int count=0;
-
-	ac = ac;
+	
+	(void) ac;
 	current = malloc(PATH_MAX);
 	if (current == NULL)
 		return (12);/* pendiente validacion de error*/
