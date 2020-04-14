@@ -16,7 +16,7 @@ int search_path(char **token, const list_t *h, int count, char **av)
 		bin_com = malloc(_strlen(token[0]) + _strlen(h->str) + 1);
 		_strcpy(bin_com, h->str);
 		_strncat(bin_com, "/", 1);
-		_strncat(bin_com, token[0], strlen(token[0]));
+		_strncat(bin_com, token[0], _strlen(token[0]));
 
 		if (stat(bin_com, &st) == 0)
 		{
@@ -26,7 +26,6 @@ int search_path(char **token, const list_t *h, int count, char **av)
 				write(STDERR_FILENO, &msg, _strlen(msg));
 			}
 		}
-
 		h = h->next;
 		free(bin_com);
 		bin_com = NULL;
