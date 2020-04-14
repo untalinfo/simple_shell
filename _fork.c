@@ -3,9 +3,12 @@
  * _fork - after fork, this function call the function
  * @token: double pointer with the input commands and flags
  * @head: pointer to head of linkend list
+ * @count: counter executed commands
+ * @av: double pointer to aguments
+ * @er: pointer to variable stored status error
  * Return: return 1 if fork is success
  */
-int _fork(char **token, const list_t *head, int count,char **av, int *er)
+int _fork(char **token, const list_t *head, int count, char **av, int *er)
 {
 
 	int i = 0;
@@ -26,13 +29,14 @@ int _fork(char **token, const list_t *head, int count,char **av, int *er)
 			{
 				if (execve(token[0], token, environ) == -1)
 				{
-					sprintf(msg,"%s: cannot access '%s': No such file or directory \n", token[0], token[1]);
+					sprintf(msg, "%s: cannot access '%s': No such file or directory \n",
+						token[0], token[1]);
 					write(STDERR_FILENO, &msg, _strlen(msg));
 					exit(2);
 				}
 			}
 		}
-		sprintf(msg,"%s: %d: %s: not found\n", av[0], count, token[0]);
+		sprintf(msg, "%s: %d: %s: not found\n", av[0], count, token[0]);
 		write(STDERR_FILENO, &msg, _strlen(msg));
 		exit(127);
 	}
