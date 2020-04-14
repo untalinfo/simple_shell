@@ -75,7 +75,7 @@ void exec(char **token, char *current, char *_path, list_t *head,
 	else if (_strcmp("cd", token[0]) == 0)
 		current = _cd(token, current);
 	else if (_strcmp("$PATH", token[0]) == 0)
-		write(1, _path, strlen(_path));
+		write(1, _path, _strlen(_path));
 	else
 		_fork(token, head, c, av, er);
 }
