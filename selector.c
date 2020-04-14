@@ -5,7 +5,7 @@
  * @h: head of the path linked list
  * Return: -1 if path not found
  */
-int search_path(char **token, const list_t *h, int count, char **av)
+int search_path(char **token, const list_t *h)
 {
 	char *bin_com = NULL;
 	struct stat st;
