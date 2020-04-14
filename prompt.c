@@ -16,8 +16,10 @@ int main(int ac, char **av)
 	int *er = &error;
 
 	current = malloc(PATH_MAX);
-	(current == NULL) ? exit(12) : current;/* pendiente validacion de error*/
-	(ac > 1) ? exit(EXIT_SUCCESS) : ac;
+	if (current == NULL) 
+		exit(12);/* pendiente validacion de error*/
+	if (ac > 1)
+		exit(EXIT_SUCCESS);
 	do {
 		head = NULL;
 		_path = _getenv("PATH");
@@ -33,7 +35,8 @@ int main(int ac, char **av)
 		count++;
 		if (*data != '\n')
 		{
-			(rd == EOF) ? end_of_file(data, er) : rd;
+			if (rd == EOF)
+				end_of_file(data, er);
 			token = com_split(data);
 			if (token == NULL)
 			{
@@ -45,7 +48,8 @@ int main(int ac, char **av)
 			data = NULL, len = 0;
 		}
 	} while (rd != -1);
-	(rd == -1) ? exit(EXIT_FAILURE) : rd;
+	if(rd == -1)
+		exit(EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
