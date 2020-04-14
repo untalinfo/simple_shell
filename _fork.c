@@ -20,7 +20,7 @@ int _fork(char **token, const list_t *head, int count,char **av, int *er)
 		_fork_fail();
 	if (hijo == 0)
 	{
-		if (search_path(token, head, count, av) == -1)
+		if (search_path(token, head) == -1)
 		{
 			if (stat(token[i], &st) == 0)
 			{
