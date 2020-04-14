@@ -38,9 +38,11 @@ void _fork_fail(void);
 void free_list(list_t *head);
 char *_strdup(char *str);
 char *_strchr(char *s, char c);
-void free_exit(char *_path, char *data, list_t *head, char **token, char *, int *);
+void free_exit(char *_path, char *data, list_t *head,
+char **token, char *, int *);
 void print_env(char **);
-char * _cd(char **, char *);
+char *_cd(char **, char *);
 void mod_pwd(char *current, char **);
-void exec(char **token, char *current, char *_path, list_t * head, char * data, int, char **, int *, char**);
+void exec(char **token, char *current, char *_path,
+list_t *head, char *data, int, char **, int *, char**);
 #endif
