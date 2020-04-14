@@ -7,7 +7,7 @@
 [command] [options]
 .SH DESCRIPTION
 The simple shell (hsh) it's a simple program that contains and executes the basic functions of a shell (bash). Whit this shell you can execute commands like ls for example.
-.br 
+.br
 
 Shell is a program that takes commands from the keyboard and gives them to the operating system to perform.
 
@@ -16,12 +16,12 @@ Shell is a program that takes commands from the keyboard and gives them to the o
 This simple shell is a simplification of a command interpreter, similar to
 .B bash.
 .TP
- Command [option]...	ls -la 
+ Command [option]...	ls -la
 .SH OPTIONS
 Simple Shell
 operates in both
 .I interactive
-and 
+and
 .I non-interactive
 mode. The user may initiate
 .B simple shell
@@ -44,11 +44,11 @@ $./hsh
 
 $ touch Hello.txt
 
-$ ls 
+$ ls
 
 .RS 3
-firts.txt	
-.TB 
+firts.txt
+.TB
 Hello.txt
 .TB
 second.txt
@@ -62,7 +62,7 @@ quits the program, exit the shell.
 
 .SH SEE ALSO
 .I sh(1)
-, 
+,
 .I bash(1)
 .SH BUGS
 This

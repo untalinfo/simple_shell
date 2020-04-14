@@ -40,7 +40,7 @@ $|
 ## Development environment 🛠️
 This project has been tested on Ubuntu 14.06.6 LTS
 
-* The tests are carried out in [virtualBox](https://www.virtualbox.com) 
+* The tests are carried out in [virtualBox](https://www.virtualbox.com)
 * Development environment manager [vagrant](https://www.vagrantup.com)
 
 ## Authors✒️
