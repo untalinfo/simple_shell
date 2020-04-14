@@ -16,10 +16,13 @@ int main(int ac, char **av)
 	int error = 0;
 	int *er = &error;
 
-	(void) ac;
 	current = malloc(PATH_MAX);
 	if (current == NULL)
 		return (12);/* pendiente validacion de error*/
+	if (ac > 1)
+		exit(EXIT_SUCCESS);
+
+
 	do {
 		head = NULL;
 		_path = _getenv("PATH");
@@ -36,7 +39,7 @@ int main(int ac, char **av)
 		if (*data != '\n')
 		{
 			if (rd == EOF)
-				end_of_file(data);
+				end_of_file(data, er);
 			token = com_split(data);
 			if (token == NULL)
 			{
