@@ -1,19 +1,18 @@
 #include "holberton.h"
 /**
  * main -  main function to run the programm
- *
+ * @ac: number elements of av
+ * @av: double pointer to arguments
  * Return: Always 0.
  */
 int main(int ac, char **av)
 {
-	char *current = NULL;
-	char *data = NULL, *_path;
+	char *data = NULL, *_path, *current = NULL;
 	ssize_t rd;
 	list_t *head;
 	size_t len = 0;
 	char **token = NULL;
-	int count=0;
-	int error = 0;
+	int count = 0, error = 0;
 	int *er = &error;
 
 	current = malloc(PATH_MAX);
@@ -21,8 +20,6 @@ int main(int ac, char **av)
 		return (12);/* pendiente validacion de error*/
 	if (ac > 1)
 		exit(EXIT_SUCCESS);
-
-
 	do {
 		head = NULL;
 		_path = _getenv("PATH");
@@ -63,9 +60,13 @@ int main(int ac, char **av)
  * @_path: store the enviroment variable: path
  * @head: pointer to firts element of linkend list
  * @data: pointer to elements of getline
+ * @c: counter to commands executed
+ * @av: double pointer to arguments
+ * @er: double pointer to variable status error
  * Return: None
  */
-void exec(char **token, char *current, char *_path, list_t *head, char *data, int c, char **av, int *er)
+void exec(char **token, char *current, char *_path, list_t *head,
+		char *data, int c, char **av, int *er)
 {
 	if (_strcmp("exit", token[0]) == 0)
 		free_exit(_path, data, head, token, current, er);

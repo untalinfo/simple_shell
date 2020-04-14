@@ -22,7 +22,8 @@ int search_path(char **token, const list_t *h)
 		{
 			if (execve(bin_com, token, environ) == -1)
 			{
-				sprintf(msg,"%s: cannot access '%s': No such file or directory \n", token[0], token[1]);
+				sprintf(msg, "%s: cannot access '%s': No such file or directory \n",
+					token[0], token[1]);
 				write(STDERR_FILENO, &msg, _strlen(msg));
 				exit(2);
 			}

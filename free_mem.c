@@ -40,18 +40,19 @@ void free_tok(char **token)
 }
 /**
  * free_exit - funtion send to free whent token is equals to exit
- * @_path: pointer to
- * @data: Pointer to
- * @head: pointer to head of linkend list
+ * @_p: pointer to path
+ * @d: Pointer to elements of getline
+ * @h: pointer to head of linkend list
  * @token: double pointer to elements that were stored in the token
  * @cur: pointer to current directory
+ * @er: pointer to stoered varible error
  * Return: none
  */
-void free_exit(char *_path, char *data, list_t *head, char **token, char *cur, int *er)
+void free_exit(char *_p, char *d, list_t *h, char **token, char *cur, int *er)
 {
-	free(_path);
-	free(data);
-	free_list(head);
+	free(_p);
+	free(d);
+	free_list(h);
 	free_tok(token);
 	free(cur);
 	exit(*er);

@@ -23,6 +23,7 @@ void ctrlC(int sig)
 /**
  * end_of_file - function that deteted EOF and exit the process
  * @data: data of getline
+ * @er: pointer to variable stored status error
  * Return: none
  */
 void end_of_file(char *data, int *er)
