@@ -20,9 +20,10 @@ int main(int ac, char **av, char **env)
 	if (ac > 1)
 		exit(EXIT_SUCCESS);
 	print_prompt();
-	signal(SIGINT, ctrlC), count++;
+	signal(SIGINT, ctrlC);
 	while ((rd = getline(&data, &len, stdin)))
 	{
+		count++;
 		if (rd == EOF)
 			end_of_file(data, er, cur);
 		_path = _getenv("PATH", env);
@@ -73,7 +74,7 @@ int exec(char **token, char *current, char *_path, list_t *head,
 	else if (_strcmp("env", token[0]) == 0)
 		print_env(env);
 	else if (_strcmp("cd", token[0]) == 0)
-		current = _cd(token, current, env);
+		current = _cd(token, current);
 	else if (_strcmp("$PATH", token[0]) == 0)
 	{
 		sprintf(msg, "%s: %d: %s: not found\n", av[0], c, _path);
