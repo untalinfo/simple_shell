@@ -36,10 +36,28 @@ int *er, char **env, char *_path, char *data, char *cur)
 				execve(token[0], token, NULL);
 			}
 		}
-		sprintf(msg, "%s: %d: %s: not found\n", av[0], count, token[0]);
-		write(STDERR_FILENO, &msg, _strlen(msg));
-		free_tok(token), free_list(head), free(cur), free(data), free(_path);
-		exit(127);
+		if (!_strcmp(token[0],"/bin") || !_strcmp(token[0],"/bin/") ||
+		!_strcmp(token[0],"..") ||	!_strcmp(token[0],"/tmp"))
+		{
+			sprintf(msg, "%s: %d: %s: Permission denied\n", av[0], count, token[0]);
+			write(STDERR_FILENO, &msg, _strlen(msg));
+			free_tok(token), free_list(head), free(cur), free(data), free(_path);
+			exit(126);
+		}
+		else if (!_strcmp(token[0],".") || !_strcmp(token[1],"."))
+		{
+			sprintf(msg, "%s: %d: %s: %s: not found\n", av[0], count, token[0], token[1]);
+			write(STDERR_FILENO, &msg, _strlen(msg));
+			free_tok(token), free_list(head), free(cur), free(data), free(_path);
+			exit(127);
+		}
+		else
+		{
+			sprintf(msg, "%s: %d: %s: not found\n", av[0], count, token[0]);
+			write(STDERR_FILENO, &msg, _strlen(msg));
+			free_tok(token), free_list(head), free(cur), free(data), free(_path);
+			exit(127);
+		}
 	}
 	else
 	{
