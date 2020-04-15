@@ -18,7 +18,7 @@ int search_path(char **token, const list_t *h, char **env)
 		_strncat(bin_com, "/", 1);
 		_strncat(bin_com, token[0], _strlen(token[0]));
 
-		if (stat(bin_com, &st) == 0)
+		if (stat(bin_com, &st) == 0 && token[0][0] != '.')
 		{
 			execve(bin_com, token, env);
 		}
