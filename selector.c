@@ -103,12 +103,12 @@ char **com_split(char *commands)
 		temp = strtok(NULL, " \n\t\r\a");
 		i++;
 	}
+	token[i] = NULL;
 	if (!(_strcmp(token[0], ".")) && token[1] == NULL)
 	{	/*FREE TOKEN*/
-		free_tok(token);
+		free_tok(token), free(temp2);
 		return (NULL);
 	}
-	token[i] = NULL;
 	free(temp2);
 	return (token);
 }
