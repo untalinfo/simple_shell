@@ -8,14 +8,14 @@
  */
 int main(int ac, char **av, char **env)
 {
-	char *data = NULL, *_path, *current = NULL, **token = NULL;
+	char *data = NULL, *_path, *cur = NULL, **token = NULL;
 	ssize_t rd;
 	list_t *head = NULL;
 	size_t len = 0;
 	int count = 0, error = 0, *er = &error;
 
-	current = malloc(200);
-	if (current == NULL)
+	cur = malloc(200);
+	if (cur == NULL)
 		exit(12);/* pendiente validacion de error*/
 	if (ac > 1)
 		exit(EXIT_SUCCESS);
@@ -24,7 +24,7 @@ int main(int ac, char **av, char **env)
 	{
 		signal(SIGINT, ctrlC), count++;
 		if (rd == EOF)
-			end_of_file(data, er, current);
+			end_of_file(data, er, cur);
 		_path = _getenv("PATH", env);
 		if (_path != NULL)
 			if (_divisor(_path, &head) == -1)/*por verificar*/
@@ -40,9 +40,9 @@ int main(int ac, char **av, char **env)
 				print_prompt(), free(_path);
 				continue;/*pendiente*/
 			}
-			exec(token,  current, _path, head, data, count, av, er, env);
+			exec(token,  cur, _path, head, data, count, av, er, env), free_tok(token);
 		}
-		free_tok(token), free(data), free(_path), free_list(head);
+		free(data), free(_path), free_list(head);
 		data = NULL, len = 0, head = NULL, print_prompt();
 	}
 	if (rd == -1)
