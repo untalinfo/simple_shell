@@ -22,8 +22,7 @@ int main(int ac, char **av, char **env)
 	print_prompt();
 	signal(SIGINT, ctrlC);
 	while ((rd = getline(&data, &len, stdin)))
-	{
-		count++;
+	{count++;
 		if (rd == EOF)
 			end_of_file(data, er, cur);
 		_path = _getenv("PATH", env);
@@ -31,7 +30,7 @@ int main(int ac, char **av, char **env)
 			if (_divisor(_path, &head) == -1)/*por verificar*/
 			{
 				free(_path), perror("Error: ");
-					continue;
+				continue;
 			}
 		if (*data != '\n')
 		{
