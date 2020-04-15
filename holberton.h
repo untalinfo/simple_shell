@@ -42,7 +42,7 @@ char *_strchr(char *s, char c);
 void free_exit(char *_path, char *data, list_t *head,
 char **token, char *, int *);
 int print_env(char **);
-char *_cd(char **, char *, char **);
+char *_cd(char **, char *);
 void mod_pwd(char *current, char **);
 int exec(char **token, char *current, char *_path,
 list_t *head, char *data, int, char **, int *, char**);
