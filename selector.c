@@ -82,18 +82,18 @@ char **com_split(char *commands)
 	if (temp2 == NULL)
 		return (NULL);
 	_strcpy(temp2, commands);
-	tok = strtok(commands, " ");
+	tok = strtok(commands, " \n\t\r\a");
 	if (*tok == '\n' || *tok == '.')
 	{
 		free(temp2);
 		return (NULL);
 	}
 	while (tok)
-		len++, tok = strtok(NULL, " ");
+		len++, tok = strtok(NULL, " \n\t\r\a");
 	token = malloc(sizeof(char *) * (len + 1));
 	if (token == NULL)
 		return (NULL);
-	temp = strtok(temp2, " \n");
+	temp = strtok(temp2, " \n\t\r\a");
 	i = 0;
 	while (temp != NULL)
 	{
@@ -104,7 +104,7 @@ char **com_split(char *commands)
 			return (NULL);
 		}
 		_strcpy(token[i], temp);
-		temp = strtok(NULL, " \n");
+		temp = strtok(NULL, " \n\t\r\a");
 		i++;
 	}
 	token[i] = NULL;

@@ -20,9 +20,9 @@ int main(int ac, char **av, char **env)
 	if (ac > 1)
 		exit(EXIT_SUCCESS);
 	print_prompt();
+	signal(SIGINT, ctrlC), count++;
 	while ((rd = getline(&data, &len, stdin)))
 	{
-		signal(SIGINT, ctrlC), count++;
 		if (rd == EOF)
 			end_of_file(data, er, cur);
 		_path = _getenv("PATH", env);
@@ -63,7 +63,7 @@ int main(int ac, char **av, char **env)
  * @env: enviroment
  * Return: None
  */
-void exec(char **token, char *current, char *_path, list_t *head,
+int exec(char **token, char *current, char *_path, list_t *head,
 		char *data, int c, char **av, int *er, char **env)
 {
 	char msg[180];
@@ -80,5 +80,7 @@ void exec(char **token, char *current, char *_path, list_t *head,
 		write(STDERR_FILENO, &msg, _strlen(msg));
 	}
 	else
-		_fork(token, head, c, av, er, env);
+		_fork(token, head, c, av, er, env, _path, data, current);
+
+	return (0);
 }

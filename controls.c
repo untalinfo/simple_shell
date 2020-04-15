@@ -18,7 +18,7 @@ void print_prompt(void)
 void ctrlC(int sig)
 {
 	(void) sig;
-	write(STDOUT_FILENO, "\n$ ", 3);
+	write(STDOUT_FILENO, "\n($) ", 5);
 }
 /**
  * end_of_file - function that deteted EOF and exit the process

@@ -7,10 +7,13 @@
  * @av: double pointer to aguments
  * @er: pointer to variable stored status error
  * @env: enviroment
+ * @_path: the path
+ * @data: getline string
+ * @cur: previous directory
  * Return: return 1 if fork is success
  */
-int _fork(char **token, const list_t *head, int count, char **av,
-int *er, char **env)
+int _fork(char **token, list_t *head, int count, char **av,
+int *er, char **env, char *_path, char *data, char *cur)
 {
 
 	int i = 0;
@@ -40,6 +43,7 @@ int *er, char **env)
 		}
 		sprintf(msg, "%s: %d: %s: not found\n", av[0], count, token[0]);
 		write(STDERR_FILENO, &msg, _strlen(msg));
+		free_tok(token), free_list(head), free(data), free(cur), free(_path);
 		exit(127);
 	}
 	else
