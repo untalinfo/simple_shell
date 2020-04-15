@@ -46,7 +46,7 @@ int main(int ac, char **av, char **env)
 		}
 	}
 	if (rd == -1)
-		return(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
