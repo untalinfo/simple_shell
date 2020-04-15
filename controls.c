@@ -24,13 +24,15 @@ void ctrlC(int sig)
  * end_of_file - function that deteted EOF and exit the process
  * @data: data of getline
  * @er: pointer to variable stored status error
+ * @current: previus directory
  * Return: none
  */
-void end_of_file(char *data, int *er)
+void end_of_file(char *data, int *er, char *current)
 {
 
 	if (isatty(STDIN_FILENO))
 		write(STDOUT_FILENO, "\n", 1);
 	free(data);
+	free(current);
 	exit(*er);
 }

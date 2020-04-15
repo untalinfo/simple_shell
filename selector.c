@@ -83,7 +83,7 @@ char **com_split(char *commands)
 		return (NULL);
 	_strcpy(temp2, commands);
 	tok = strtok(commands, " ");
-	if (*tok == '\n')
+	if (*tok == '\n' || *tok == '.')
 	{
 		free(temp2);
 		return (NULL);
