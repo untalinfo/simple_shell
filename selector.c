@@ -82,14 +82,15 @@ char **com_split(char *commands)
 	if (temp2 == NULL)
 		return (NULL);
 	_strcpy(temp2, commands);
-	tok = strtok(commands, " \n\t\r\a");
-	if (*tok == '\n' || *tok == '.')
+	tok = strtok(commands, " ");
+	if (*tok == '\n' || *tok == '.' || *tok == '\t' || *tok == '\r' ||
+	*tok == '\a')
 	{
 		free(temp2);
 		return (NULL);
 	}
 	while (tok)
-		len++, tok = strtok(NULL, " \n\t\r\a");
+		len++, tok = strtok(NULL, " ");
 	token = malloc(sizeof(char *) * (len + 1));
 	if (token == NULL)
 		return (NULL);
