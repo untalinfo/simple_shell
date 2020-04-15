@@ -20,9 +20,10 @@ int main(int ac, char **av, char **env)
 	if (ac > 1)
 		exit(EXIT_SUCCESS);
 	print_prompt();
-	signal(SIGINT, ctrlC), count++;
+	signal(SIGINT, ctrlC);
 	while ((rd = getline(&data, &len, stdin)))
 	{
+		count++;
 		if (rd == EOF)
 			end_of_file(data, er, cur);
 		_path = _getenv("PATH", env);

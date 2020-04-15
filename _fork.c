@@ -15,13 +15,14 @@
 int _fork(char **token, list_t *head, int count, char **av,
 int *er, char **env, char *_path, char *data, char *cur)
 {
-
-	int i = 0;
 	struct stat st;
 	pid_t hijo;
-	int w = 0;
+	int w = 0, i = 0;
 	char msg[80];
 
+	(void) _path;
+        (void) data;
+        (void) cur;
 	hijo = fork();
 
 	if (hijo < 0)
@@ -32,18 +33,12 @@ int *er, char **env, char *_path, char *data, char *cur)
 		{
 			if (stat(token[i], &st) == 0)
 			{
-				if (execve(token[0], token, env) == -1)
-				{
-					sprintf(msg, "%s: cannot access '%s': No such file or directory \n",
-						token[0], token[1]);
-					write(STDERR_FILENO, &msg, _strlen(msg));
-					exit(2);
-				}
+				execve(token[0], token, NULL);
 			}
 		}
 		sprintf(msg, "%s: %d: %s: not found\n", av[0], count, token[0]);
 		write(STDERR_FILENO, &msg, _strlen(msg));
-		free_tok(token), free_list(head), free(data), free(cur), free(_path);
+		free_tok(token), free_list(head), free(cur), free(data), free(_path);
 		exit(127);
 	}
 	else
