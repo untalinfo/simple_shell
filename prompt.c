@@ -22,6 +22,9 @@ int main(int ac, char **av, char **env)
 	print_prompt();
 	while ((rd = getline(&data, &len, stdin)))
 	{
+		signal(SIGINT, ctrlC), count++;
+		if (rd == EOF)
+			end_of_file(data, er, current);
 		_path = _getenv("PATH", env);
 		if (_path != NULL)
 			if (_divisor(_path, &head) == -1)/*por verificar*/
@@ -29,21 +32,18 @@ int main(int ac, char **av, char **env)
 				free(_path), perror("Error: ");
 					continue;
 			}
-		signal(SIGINT, ctrlC), count++;
 		if (*data != '\n')
 		{
-			if (rd == EOF)
-				end_of_file(data, er);
 			token = com_split(data);
 			if (token == NULL)
 			{
-				perror("Error: ");
+				print_prompt(), free(_path);
 				continue;/*pendiente*/
 			}
 			exec(token,  current, _path, head, data, count, av, er, env);
-			free_tok(token), free(data), free(_path), free_list(head);
-			data = NULL, len = 0, print_prompt(), head = NULL;
 		}
+		free_tok(token), free(data), free(_path), free_list(head);
+		data = NULL, len = 0, head = NULL, print_prompt();
 	}
 	if (rd == -1)
 		return (EXIT_FAILURE);
@@ -66,6 +66,8 @@ int main(int ac, char **av, char **env)
 void exec(char **token, char *current, char *_path, list_t *head,
 		char *data, int c, char **av, int *er, char **env)
 {
+	char msg[180];
+
 	if (_strcmp("exit", token[0]) == 0)
 		free_exit(_path, data, head, token, current, er);
 	else if (_strcmp("env", token[0]) == 0)
@@ -73,7 +75,10 @@ void exec(char **token, char *current, char *_path, list_t *head,
 	else if (_strcmp("cd", token[0]) == 0)
 		current = _cd(token, current);
 	else if (_strcmp("$PATH", token[0]) == 0)
-		write(1, _path, _strlen(_path));
+	{
+		sprintf(msg, "%s: %d: %s: not found\n", av[0], c, _path);
+		write(STDERR_FILENO, &msg, _strlen(msg));
+	}
 	else
 		_fork(token, head, c, av, er, env);
 }
