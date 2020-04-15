@@ -3,7 +3,7 @@
  * _fork - after fork, this function call the function
  * @token: double pointer with the input commands and flags
  * @head: pointer to head of linkend list
- * @count: counter executed commands
+ * @c: counter executed commands
  * @av: double pointer to aguments
  * @er: pointer to variable stored status error
  * @env: enviroment
@@ -12,7 +12,7 @@
  * @cur: previous directory
  * Return: return 1 if fork is success
  */
-int _fork(char **token, list_t *head, int count, char **av,
+int _fork(char **token, list_t *head, int c, char **av,
 int *er, char **env, char *_path, char *data, char *cur)
 {
 	struct stat st;
@@ -20,44 +20,29 @@ int *er, char **env, char *_path, char *data, char *cur)
 	int w = 0, i = 0;
 	char msg[80];
 
-	(void) _path;
-        (void) data;
-        (void) cur;
 	hijo = fork();
-
 	if (hijo < 0)
 		_fork_fail();
 	if (hijo == 0)
 	{
 		if (search_path(token, head, env) == -1)
-		{
 			if (stat(token[i], &st) == 0)
-			{
 				execve(token[0], token, NULL);
-			}
-		}
-		if (!_strcmp(token[0],"/bin") || !_strcmp(token[0],"/bin/") ||
-		!_strcmp(token[0],"..") ||	!_strcmp(token[0],"/tmp"))
+		if (!_strcmp(token[0], "/bin") || !_strcmp(token[0], "/bin/") ||
+		!_strcmp(token[0], "..") ||	!_strcmp(token[0], "/tmp"))
 		{
-			sprintf(msg, "%s: %d: %s: Permission denied\n", av[0], count, token[0]);
+			sprintf(msg, "%s: %d: %s: Permission denied\n", av[0], c, token[0]);
 			write(STDERR_FILENO, &msg, _strlen(msg));
 			free_tok(token), free_list(head), free(cur), free(data), free(_path);
 			exit(126);
 		}
-		else if (!_strcmp(token[0],".") || !_strcmp(token[1],"."))
-		{
-			sprintf(msg, "%s: %d: %s: %s: not found\n", av[0], count, token[0], token[1]);
-			write(STDERR_FILENO, &msg, _strlen(msg));
-			free_tok(token), free_list(head), free(cur), free(data), free(_path);
-			exit(127);
-		}
+		else if (!_strcmp(token[0], ".") || !_strcmp(token[1], "."))
+			sprintf(msg, "%s: %d: %s: %s: not found\n", av[0], c, token[0], token[1]);
 		else
-		{
-			sprintf(msg, "%s: %d: %s: not found\n", av[0], count, token[0]);
-			write(STDERR_FILENO, &msg, _strlen(msg));
-			free_tok(token), free_list(head), free(cur), free(data), free(_path);
-			exit(127);
-		}
+			sprintf(msg, "%s: %d: %s: not found\n", av[0], c, token[0]);
+		write(STDERR_FILENO, &msg, _strlen(msg));
+		free_tok(token), free_list(head), free(cur), free(data), free(_path);
+		exit(127);
 	}
 	else
 	{
