@@ -36,7 +36,7 @@ char *_getenv(char *str, char **env)
  * @env: enviroment
  * Return: None
  */
-void print_env(char **env)
+int print_env(char **env)
 {
 	unsigned int i = 0;
 
@@ -46,6 +46,7 @@ void print_env(char **env)
 		write(STDOUT_FILENO, "\n", 1);
 		i++;
 	}
+	return (0);
 }
 
 /**

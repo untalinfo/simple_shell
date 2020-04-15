@@ -28,7 +28,8 @@ int _strlen(const char *s);
 char *_strncat(char *dest, char *src, int n);
 int search_path(char **command, const list_t *h, char **);
 char *_strcpy(char *dest, char *src);
-int _fork(char **token, const list_t *head, int, char **, int *, char **);
+int _fork(char **token, list_t *head, int, char **, int *, char **,
+char *, char *, char *);
 void end_of_file(char *data, int *, char *);
 void print_prompt(void);
 void ctrlC(int sig);
@@ -40,9 +41,9 @@ char *_strdup(char *str);
 char *_strchr(char *s, char c);
 void free_exit(char *_path, char *data, list_t *head,
 char **token, char *, int *);
-void print_env(char **);
+int print_env(char **);
 char *_cd(char **, char *);
 void mod_pwd(char *current, char **);
-void exec(char **token, char *current, char *_path,
+int exec(char **token, char *current, char *_path,
 list_t *head, char *data, int, char **, int *, char**);
 #endif
