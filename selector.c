@@ -10,7 +10,6 @@ int search_path(char **token, const list_t *h, char **env)
 {
 	char *bin_com = NULL;
 	struct stat st;
-	char msg[80];
 
 	while (h != NULL)
 	{
@@ -21,13 +20,7 @@ int search_path(char **token, const list_t *h, char **env)
 
 		if (stat(bin_com, &st) == 0)
 		{
-			if (execve(bin_com, token, env) == -1)
-			{
-				sprintf(msg, "%s: cannot access '%s': No such file or directory \n",
-					token[0], token[1]);
-				write(STDERR_FILENO, &msg, _strlen(msg));
-				exit(2);
-			}
+			execve(bin_com, token, env);
 		}
 		h = h->next;
 		free(bin_com);
