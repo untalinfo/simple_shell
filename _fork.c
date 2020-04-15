@@ -27,7 +27,7 @@ int *er, char **env, char *_path, char *data, char *cur)
 	{
 		if (search_path(token, head, env) == -1)
 			if (stat(token[i], &st) == 0)
-				execve(token[0], token, NULL);
+				execve(token[0], token, env);
 		if (!_strcmp(token[0], "/bin") || !_strcmp(token[0], "/bin/") ||
 		!_strcmp(token[0], "..") || !_strcmp(token[0], "/tmp"))
 		{
