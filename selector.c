@@ -71,20 +71,15 @@ int _divisor(char *_path, list_t **head)
 
 char **com_split(char *commands)
 {
-	char **token = NULL;
-	char *tok = NULL;
-	int len = 0;
-	char *temp;
-	char *temp2;
-	int i = 0;
+	char **token = NULL, *temp, *temp2, *tok = NULL;
+	int len = 0, i = 0;
 
 	temp2 = malloc(sizeof(char) * _strlen(commands) + 1);
 	if (temp2 == NULL)
 		return (NULL);
 	_strcpy(temp2, commands);
 	tok = strtok(commands, " ");
-	if (*tok == '\n' || *tok == '.' || *tok == '\t' || *tok == '\r' ||
-	*tok == '\a')
+	if (*tok == '\n' || *tok == '\t' || *tok == '\r' ||	*tok == '\a')
 	{
 		free(temp2);
 		return (NULL);
@@ -107,6 +102,11 @@ char **com_split(char *commands)
 		_strcpy(token[i], temp);
 		temp = strtok(NULL, " \n\t\r\a");
 		i++;
+	}
+	if (!(_strcmp(token[0], ".")) && token[1] == NULL)
+	{	/*FREE TOKEN*/
+		free_tok(token);
+		return (NULL);
 	}
 	token[i] = NULL;
 	free(temp2);
