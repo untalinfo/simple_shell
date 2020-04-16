@@ -65,9 +65,7 @@ quits the program, exit the shell.
 ,
 .I bash(1)
 .SH BUGS
-This
-.B whereis
-command has bugs in Ubuntu 14.04 LTS, but it works fine on later versions.
+Not found at the moment in the implemented functionalities, if you find any inform us.
 .SH AUTHORS
 Dairo Facundo Duarte <dairof7@gmail.com>
 .br
