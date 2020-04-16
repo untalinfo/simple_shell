@@ -28,19 +28,15 @@ int main(int ac, char **av, char **env)
 		_path = _getenv("PATH", env);
 		if (_path != NULL)
 			if (_divisor(_path, &head) == -1)/*por verificar*/
-			{free(_path), perror("Error: ");
+			{
+				free(_path), perror("Error: ");
 				continue;
 			}
 		if (*data != '\n')
 		{
 			token = com_split(data);
 			if (token != NULL)
-			{
-				if (_strcmp("env", token[0]) == 0)
-					print_env(env), free_tok(token);
-				else
 				exec(token,  cur, _path, head, data, count, av, er, env), free_tok(token);
-			}
 		}
 		free(data), free(_path), free_list(head);
 		data = NULL, len = 0, head = NULL, print_prompt();
@@ -70,8 +66,8 @@ int exec(char **token, char *current, char *_path, list_t *head,
 
 	if (_strcmp("exit", token[0]) == 0)
 		free_exit(_path, data, head, token, current, er);
-	/*else if (_strcmp("env", token[0]) == 0)*/
-		/*print_env(env);*/
+	else if (_strcmp("env", token[0]) == 0)
+		print_env(env);
 	else if (_strcmp("cd", token[0]) == 0)
 		current = _cd(token, current);
 	else if (_strcmp("$PATH", token[0]) == 0)
