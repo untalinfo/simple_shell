@@ -66,7 +66,7 @@ int exec(char **token, char *current, char *_path, list_t *head,
 
 	if (_strcmp("exit", token[0]) == 0)
 		free_exit(_path, data, head, token, current, er);
-	else if (_strcmp("env", token[0]) == 0)
+	else if (_strcmp("env", token[0]) == 0 && token[1] == NULL)
 		print_env(env);
 	else if (_strcmp("cd", token[0]) == 0)
 		current = _cd(token, current, env, av, c, er);
