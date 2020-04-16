@@ -3,12 +3,13 @@
  * _cd - function that allows to change directory
  * @token: pointer to commands from tok
  * @current: pointer to current directory
+ * @env: enviroment variable
  * Return: current
  */
-char *_cd(char **token, char *current)
+char *_cd(char **token, char *current, char **env)
 {
-	/*size_t len = PATH_MAX;*/
-	char *buff = NULL;
+	/*size_t len = 200;*/
+	char *buff = NULL, *home = NULL;
 
 	buff = malloc(200);
 	/*getcwd(p, len);*/
@@ -18,16 +19,17 @@ char *_cd(char **token, char *current)
 
 	if (token[1] == NULL)
 	{
-		chdir("/home");
+		home = _getenv("HOME", env);
+		chdir(home);
 		getcwd(current, 200);
-		/*mod_pwd(current);*/
+		mod_pwd(current, env);
 	}
 	else if (_strcmp(token[1], "-") == 0)
 	{
 		write(1, current, _strlen(current));
 		write(1, "\n", 1);
 		chdir(current);
-		/*mod_pwd(current);*/
+		mod_pwd(current, env);
 	}
 	else
 	{
@@ -35,5 +37,6 @@ char *_cd(char **token, char *current)
 	}
 	_strcpy(current, buff);
 	free(buff);
+	free(home);
 	return (current);
 }
