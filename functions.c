@@ -9,7 +9,7 @@
  * @er: error pointer
  * Return: current
  */
-char *_cd(char **token, char *current, char **env, char ** av, int c, int *er)
+char *_cd(char **token, char *current, char **env, char **av, int c, int *er)
 {
 	char *buff = NULL, *home = NULL;
 	char msg[100];
@@ -35,7 +35,7 @@ char *_cd(char **token, char *current, char **env, char ** av, int c, int *er)
 	{
 		if (chdir(token[1]) == -1)
 		{
-			sprintf(msg, "%s: %d: %s: can't cd to path\n", av[0], c, token[0]);
+			sprintf(msg, "%s: %d: %s: can't cd to %s\n", av[0], c, token[0], token[1]);
 			write(STDERR_FILENO, &msg, _strlen(msg));
 			*er = 2;
 		}
