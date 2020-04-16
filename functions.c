@@ -4,18 +4,22 @@
  * @token: pointer to commands from tok
  * @current: pointer to current directory
  * @env: enviroment
+ * @av: argv pointer
+ * @c: instrunction counter
+ * @er: error pointer
  * Return: current
  */
-char *_cd(char **token, char *current, char **env)
+char *_cd(char **token, char *current, char **env, char ** av, int c, int *er)
 {
 	char *buff = NULL, *home = NULL;
+	char msg[100];
 
 	buff = malloc(200);
 	if (buff == NULL)
 		return (NULL);
 	getcwd(buff, 200);
 
-	if (token[1] == NULL)
+	if (token[1] == NULL || (!_strcmp(token[1], "~")))
 	{
 		home = _getenv("HOME", env);
 		chdir(home);
@@ -29,7 +33,12 @@ char *_cd(char **token, char *current, char **env)
 	}
 	else
 	{
-		chdir(token[1]);
+		if (chdir(token[1]) == -1)
+		{
+			sprintf(msg, "%s: %d: %s: can't cd to path\n", av[0], c, token[0]);
+			write(STDERR_FILENO, &msg, _strlen(msg));
+			*er = 2;
+		}
 	}
 	_strcpy(current, buff);
 	free(buff);
