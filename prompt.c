@@ -64,8 +64,10 @@ int exec(char **token, char *current, char *_path, list_t *head,
 {
 	char msg[180];
 
-	if (_strcmp("exit", token[0]) == 0)
+	if ((_strcmp("exit", token[0]) == 0) && (token[1] == NULL))
 		free_exit(_path, data, head, token, current, er);
+	if ((_strcmp("exit", token[0]) == 0) && (token[1] != NULL))
+		*er = _atoi(token[1]), free_exit(_path, data, head, token, current, er);
 	else if (_strcmp("env", token[0]) == 0 && token[1] == NULL)
 		print_env(env);
 	else if (_strcmp("cd", token[0]) == 0)

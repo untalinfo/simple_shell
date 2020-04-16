@@ -49,4 +49,5 @@ int _hhelp(void);
 int _hcd(void);
 int _hlpexit(void);
 int _hbuild(char *);
+int _atoi(char *s);
 #endif
