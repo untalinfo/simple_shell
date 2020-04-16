@@ -33,9 +33,25 @@ $|
 ```
 vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$ ./hsh
 $ ls
-AUTHORS   _fork.c   holberton.h   man_1_simple_shell   node.c   selector.c
+AUTHORS   _fork.c   holberton.h   man_1_simple_shell   node.c   selector.c     test_ls
 README.md   hack    hsh           messages.c           promp.c  strfuncions.c
 $|
+```
+This shell version can also be tested in non-interactive mode:
+```
+vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$ echo "/bin/ls" | ./hsh
+AUTHORS   _fork.c   holberton.h   man_1_simple_shell   node.c   selector.c     test_ls
+README.md   hack    hsh           messages.c           promp.c  strfuncions.c
+vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$ |
+```
+```
+vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$ cat test_ls
+/bin/ls
+/bin/ls
+vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$ cat test_ls | ./hsh
+/bin/ls
+/bin/ls
+vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$ |
 ```
 ## Development environment 🛠️
 This project has been tested on Ubuntu 14.06.6 LTS
