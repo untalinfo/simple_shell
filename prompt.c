@@ -35,12 +35,8 @@ int main(int ac, char **av, char **env)
 		if (*data != '\n')
 		{
 			token = com_split(data);
-			if (token == NULL)
-			{
-				print_prompt(), free(_path);
-				continue;/*pendiente*/
-			}
-			exec(token,  cur, _path, head, data, count, av, er, env), free_tok(token);
+			if (token != NULL)
+				exec(token,  cur, _path, head, data, count, av, er, env), free_tok(token);
 		}
 		free(data), free(_path), free_list(head);
 		data = NULL, len = 0, head = NULL, print_prompt();
