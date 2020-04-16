@@ -8,7 +8,7 @@
 char *_getenv(char *str, char **env)
 {
 	int i;
-	char *path;
+	char *path = NULL;
 
 	for (i = 0; env[i] != NULL; i++)
 	{
