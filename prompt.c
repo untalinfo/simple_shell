@@ -69,7 +69,7 @@ int exec(char **token, char *current, char *_path, list_t *head,
 	else if (_strcmp("env", token[0]) == 0)
 		print_env(env);
 	else if (_strcmp("cd", token[0]) == 0)
-		current = _cd(token, current);
+		current = _cd(token, current, env);
 	else if (_strcmp("$PATH", token[0]) == 0)
 	{
 		sprintf(msg, "%s: %d: %s: not found\n", av[0], c, _path);
