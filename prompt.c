@@ -75,6 +75,27 @@ int exec(char **token, char *current, char *_path, list_t *head,
 		sprintf(msg, "%s: %d: %s: not found\n", av[0], c, _path);
 		write(STDERR_FILENO, &msg, _strlen(msg));
 	}
+	else if (_strcmp("help", token[0]) == 0 && token[1] == NULL)
+		_hbuild(NULL);
+	else if (_strcmp("help", token[0]) == 0)
+	{
+		if (_strcmp("help", token[1]) == 0)
+			_hhelp();
+		else if (_strcmp("cd", token[1]) == 0)
+			_hcd();
+		else if (_strcmp("exit", token[1]) == 0)
+			_hlpexit();
+		else if (_strcmp("-sd", token[1]) == 0)
+			_hbuild(NULL);
+		else
+		{
+			sprintf(msg, "%s: %d: help: no help topics match '%s'. Try ",
+					av[0], c, token[1]);
+			sprintf(msg, "%s'help help' or 'man -k %s' or 'info %s'.\n", msg,
+					token[1], token[1]);
+			write(STDERR_FILENO, msg, _strlen(msg));
+		}
+	}
 	else
 		_fork(token, head, c, av, er, env, _path, data, current);
 

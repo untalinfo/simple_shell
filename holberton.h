@@ -45,4 +45,8 @@ int print_env(char **);
 char *_cd(char **, char *, char **, char **, int, int *);
 int exec(char **token, char *current, char *_path,
 list_t *head, char *data, int, char **, int *, char**);
+int _hhelp(void);
+int _hcd(void);
+int _hlpexit(void);
+int _hbuild(char *);
 #endif
