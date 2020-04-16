@@ -48,23 +48,3 @@ int print_env(char **env)
 	}
 	return (0);
 }
-
-/**
- * mod_pwd - function that modify pwd in the environ variable
- * @str: pointer to current directory
- * @env: enviroment
- * Return: none
- */
-void mod_pwd(char *str, char **env)
-{
-	int i;
-
-	for (i = 0; env[i] != NULL; i++)
-	{
-		if ((env[i][0] == 'P') && (env[i][1] == 'W')
-			&& (env[i][2] == 'D'))
-		{
-			_strcpy(_strchr(env[i], '/'), str);
-		}
-	}
-}
