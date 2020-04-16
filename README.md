@@ -5,7 +5,7 @@
 Holberton School Shell (hsh), is a simple program of the line commands. This simple shell recreates basic and some more complex functionalities to result in our own Shell. This shell si developed in the programming language c.
 
 # Table of Contents
-1. [Requeriments](#Requeriments)
+1. [Requeriments](##Requeriments)
 2. [How to use](#How-to-Use)
 3. [Test](#Test)
 4. [Development environment](#Development-enviroment)
