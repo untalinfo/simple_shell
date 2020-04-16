@@ -60,6 +60,17 @@ $ |
 .B exit:
 quits the program, exit the shell.
 
+.B env:
+displays a list of environment variables
+
+.SH RESERVED KEY-WORDS
+
+.B ctrl + D:
+quits the program, exit the shell, similar al comando exit.
+
+.B ctrl + C:
+ends the process that is running, useful to regain control of the system.
+
 .SH SEE ALSO
 .I sh(1)
 ,
