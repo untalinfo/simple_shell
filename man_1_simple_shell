@@ -74,7 +74,7 @@ $
 $
 
 .RE
-Run pwd command:
+.B Run pwd command:
 .RS +4
 [$ pwd
 .RE
@@ -83,7 +83,7 @@ Run pwd command:
 .RE
 
 .RE
-Run exit command:
+.B Run exit command:
 .RS +4
 [$ exit
 .RE
@@ -91,7 +91,7 @@ Run exit command:
 vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$
 .RE
 
-Non-interactive mode:
+.B Non-interactive mode:
 
 .RS +4
 $ echo "/bin/ls" | ./hsh
